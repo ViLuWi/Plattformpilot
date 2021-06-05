@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def platform_detail(request):
+    return render(request, 'platforms/platform-detail.html', {})
