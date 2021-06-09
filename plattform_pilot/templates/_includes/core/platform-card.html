@@ -1,0 +1,95 @@
+<div class="row mb-5 position-relative card-wrapper {% if platform.is_featured %} border border-danger{% endif %}">
+    <a href="{% url 'platform:platform_detail' platform.slug %}" class="text-decoration-none text-dark">
+        {% if accuracy_fit %}
+            <div class="card__accuracy badge bg-white text-dark border border-success {% if platform.is_featured %}border-danger {% endif %}">
+                100%
+                <br>
+                PASSEND!
+            </div>
+        {% else %}
+            <div class="card__accuracy badge bg-white text-dark border {% if platform.is_featured %}border-danger {% endif %}">
+                {% for x in accurary %}
+                    {% if platform.id == x.id and not platform.is_featured %}
+                        {% if x.accuracy < 1 %}
+                            0%
+                        {% else %}
+                            {{ x.accuracy }}%
+                        {% endif %}
+                        <br>
+                        PASSEND!
+                    {% elif platform.id == x.id and platform.is_featured %}
+                        <p class="pt-2">EMPFEHLUNG</p>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div class="col-sm-3">
+            <div class="d-sm-block d-flex">
+                <img src="{{ platform.thumbnail.url }}" width="75" class=""/>
+                <div class="ms-sm-0 ms-2">
+                    <h4 class="mt-sm-2 mb-0">{{ platform.name }}</h4>
+                    <a href="{{ platform.link }}"
+                       class="{% if platform.is_featured %} text-danger {% endif %}text-secondary text-decoration-none"
+                       target="_blank">Zum Anbieter</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5 mt-sm-0 mt-3">
+            <ul class="list-group">
+                {% if platform.tested %}
+                    <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i><b>Von uns
+                        getestet</b></li>
+                {% endif %}
+                {% for func in platform.functionality.all %}
+                    {% if forloop.counter < 5 and platform.tested %}
+                        <li class="list-group-item"><i
+                                class="bi bi-check-circle-fill text-success me-2"></i>{{ func }} {{ func.id }}
+                        </li>
+                    {% elif forloop.counter < 6 and not platform.tested %}
+                        <li class="list-group-item"><i
+                                class="bi bi-check-circle-fill text-success me-2"></i>{{ func }} {{ func.id }}
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                <li class="list-group-item">
+                    {% include '_includes/icons/target-group.svg' %}
+                    Für {{ platform.suitable_for.first }}
+                    {% if platform.suitable_for.count > 1 %}
+                        <span class="badge bg-secondary position-relative" style="bottom: 3px;">+{{ platform.suitable_for.count }}</span>
+                    {% endif %}
+                </li>
+
+            </ul>
+        </div>
+        <div class="col-sm-4">
+            <div class="text-sm-end">
+                <a href="{% url 'platform:platform_detail' platform.slug %}" class="text-danger btn my-2 pe-0 d-sm-inline d-none">
+                    Mehr Erfahren
+                    <i class="bi bi-chevron-right"></i>
+                </a>
+                <div class="d-sm-inline d-flex">
+                    <div class="ms-auto text-end order-1">
+                        {% if platform.pricing > 0 %}
+                            <p class="h5 mb-0">{{ platform.pricing }}€</p>
+                            <small>{{ platform.pricing_note }}</small>
+                        {% else %}
+                            <p class="h5 mb-0">Gratis</p>
+                            <small><i class="bi bi-exclamation-circle"></i> {{ platform.pricing_note }}</small>
+                        {% endif %}
+                    </div>
+                    <p class="ms-ms-0 ms-3">
+                        {% if platform.is_free %}
+                            <i class="bi bi-check-all text-success"></i>
+                        {% else %}
+                            <i class="bi bi-x-circle-fill text-danger"></i>
+                        {% endif %}
+                        Kostenlose Variante
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <small class="text-secondary">rating</small>
+        </div>
+    </a>
+</div>

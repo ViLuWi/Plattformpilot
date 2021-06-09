@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <ul>
+        {% for category in categories %}
+            <li><a href="{% url 'core:platform_list' category.slug %}"?is_free=on>{{ category.category }}</a></li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

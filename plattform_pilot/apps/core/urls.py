@@ -6,5 +6,6 @@ app_name = 'core'
 
 
 urlpatterns = [
-    path('', index, name="index")
+    path('', index, name="index"),
+    path('<str:slug>', platform_list, name="platform_list"),
 ]

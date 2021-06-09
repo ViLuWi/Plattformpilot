@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block custom-css %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{% static 'css/core/platform-list.css' %}"/>
+{% endblock %}
+
+{% block content %}
+
+    <div class="container-lg mt-5 px-lg-auto px-4">
+        <div class="mb-3">
+            <h1 class="h2">{{ category|capfirst }}</h1>
+            <a href="{% url 'core:index' %}" class="text-decoration-none">
+                <i class="bi bi-chevron-double-left position-relative" style="font-size: 0.75rem; bottom:1px;">
+                </i> Kategorie ändern</a>
+        </div>
+        <div class="filter__mobile-button d-lg-none d-flex justify-content-end">
+            <input id="navbar" type="checkbox">
+            <label class='menu' for="navbar">
+                Filter <i class="bi bi-funnel-fill"></i>
+            </label>
+        </div>
+        <form method="get" id="form">
+            <div class="row row-cols-lg-2 g-4">
+                <!-- filter section -->
+                <div class="col-lg-3 p-lg-0 p-3">
+                    <div class="card-wrapper card-wrapper-fix" id="filter_area">
+                        <h5>Funktionen</h5>
+                        {{ filter.form.funktion }}
+                        <h5>Preisoption</h5>
+                        <li>
+                            <label for="id_is_free">
+                                {{ filter.form.is_free }}
+                                <span class="checkmark"><span class="check"></span></span>
+                                Kostenlose Variante
+                            </label>
+                        </li>
+                        <p class="mt-3 mb-0">Preisspanne</p>
+                        <div class="filter__pricerange-wrapper">
+                            {{ filter.form.price }}
+                        </div>
+                        <h5>Geeignet für</h5>
+                        {{ filter.form.suitable_for }}
+                        <button type="submit" class="btn btn-success w-100">Filtern</button>
+                        <br>
+                        <a href="{% url 'core:platform_list' category.slug %}?is_free=on"
+                           class="text-decoration-none text-primary">Filter zurücksetzen</a>
+                    </div>
+                    <div class="mt-5 card-wrapper card-wrapper-fix order-5">
+                        <h5>Ähnliche Kategorien</h5>
+                        {% for category in category.related_category.all %}
+                            <a href="{% url 'core:platform_list' category.slug %}?is_free=on">{{ category }}</a>
+                            <br>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- /filter section -->
+                <div class="col-lg-8 col-12 p-lg-0 p-3 offset-lg-1">
+                    <!-- Sorting -->
+                    <div class="card-wrapper card-wrapper-fix mb-5 d-flex justify-content-between">
+                        <div>
+                            <p>Treffer: <b>{{ filter.qs.count }}</b></p>
+                        </div>
+                        <div class="d-sm-flex d-none">
+                            <p>Insgesamt: <b id="amount_products">{{ filter.qs.count }}</b></p>
+                        </div>
+                        <div>
+                            <select name="sort_by" id="sort_by" class="form-select">
+                                <option value="-name">Empfehlung</option>
+                                <option value="name">Name</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- /Sorting -->
+                    <!-- Platform Cards -->
+                    {% for platform in filter.qs %}
+                        {% with accuracy_fit=True %}
+                            {% include '_includes/core/platform-card.html' %}
+                        {% endwith %}
+                    {% endfor %}
+                    <hr class="mb-5">
+                    <!-- /Platform Cards -->
+                    <!-- Related Platforms -->
+                    {% for platform in related_platforms %}
+                        {% with accuracy_fit=False %}
+                            {% include '_includes/core/platform-card.html' %}
+                        {% endwith %}
+                    {% endfor %}
+                    <!-- /Related Platforms -->
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block custom-js %}
+    <script>
+        // remove unnesseccary values
+        let filter_unnecessary = (array, input, what_to_filter) => {
+            let filter_id, substr_label;
+            for (let i = 0; i < input.length; i++) {
+                filter_id = input[i].id
+                let label_text = document.querySelector('label[for="' + filter_id + '"]')
+                // remove functionality values
+                if (what_to_filter === 'functionality') {
+                    if (window.innerWidth > 992) {
+                        substr_label = label_text.innerText
+                    } else {
+                        substr_label = label_text.innerText.substr(2)
+                    }
+                    if (array.includes(substr_label)) {
+                        // remove unnesseccary list element
+                        label_text.parentElement.remove()
+                    }
+                }
+                // remove suitable_for values
+                if (what_to_filter === 'suitable_for') {
+                    let input_val = document.getElementById('id_suitable_for_' + i)
+                    console.log(array, input_val.value)
+                    if (!array.includes(parseFloat(input_val.value))) {
+                        document.querySelector('label[for="id_suitable_for_' + i + '"]').parentElement.remove()
+                    }
+                }
+                // add custom checkbox span
+                label_text.innerHTML += `<span class="checkmark"><span class="check"></span></span>`
+            }
+        }
+
+        let filter_input = document.querySelectorAll('input[name="funktion"]')
+        let filter_array = {{ unnesseccary|safe }};
+        let suitable_input = document.querySelectorAll('input[name="suitable_for"]');
+        let suitable_array = {{ suitable_list|safe }};
+        filter_unnecessary(filter_array, filter_input, 'functionality')
+        filter_unnecessary(suitable_array, suitable_input, 'suitable_for')
+
+        // add custom checkbox span to every input
+        document.querySelector('label[for="id_is_free"]').innerHTML += `<span class="checkmark"><span class="check"></span></span>`
+
+        // add placeholder so specific inputs
+        document.getElementById('id_price_0').setAttribute('placeholder', 'von')
+        document.getElementById('id_price_1').setAttribute('placeholder', 'bis')
+
+        // mobile button collapse
+        const mobile_btn = document.getElementById('navbar');
+        mobile_btn.addEventListener('click', () => {
+            if (mobile_btn.checked) {
+                window.addEventListener('scroll', stop_scrolling)
+                setTimeout(() => {
+                    document.getElementById('filter_area').classList.add('show_content')
+                }, 500)
+            } else {
+                document.getElementById('filter_area').classList.remove('show_content')
+                window.removeEventListener('scroll', stop_scrolling)
+            }
+        })
+
+        function stop_scrolling() {
+            if (window.scrollY > (document.getElementById('filter_area').clientHeight / 2)) {
+                window.scrollTo(0, (document.getElementById('filter_area').clientHeight / 2));
+            }
+        }
+
+        // count amount of products
+        document.getElementById('amount_products').innerText = {{ filter.qs.count }} +
+        {{ related_platforms.count }}
+    </script>
+{% endblock %}

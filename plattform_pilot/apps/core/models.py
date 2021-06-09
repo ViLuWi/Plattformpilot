@@ -1,3 +1,26 @@
-from django.db import models
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 
-# Create your models here.
+from django.db import models
+from django.utils.text import slugify
+
+from apps.platforms.models import Functionality
+
+
+class Category(models.Model):
+    category = models.CharField(max_length=200)
+    description = models.TextField(max_length=5000, default='')
+    slug = models.SlugField(blank=True, null=True)
+    filter_functions = models.ManyToManyField(Functionality, verbose_name='Filtern nach')
+    related_category = models.ManyToManyField('self', related_name='related_category', blank=True, null=True)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name_plural = 'Categories'
+
+    def __str__(self):
+        return f'{self.category}'
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.category)
+        super(Category, self).save(*args, **kwargs)
