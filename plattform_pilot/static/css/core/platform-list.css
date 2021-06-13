@@ -1,0 +1,325 @@
+
+/* card design */
+.card__accuracy {
+    border-radius: 50px;
+    width: 130px;
+    font-size: 16px;
+    height: 47px;
+    position: absolute;
+    top: -23px;
+    left: -62px;
+    transform: rotate(-5deg);
+}
+
+.card-wrapper.card-wrapper-fix {
+    background: #fbfcfd;
+    box-shadow: none;
+    padding: 10px;
+}
+
+.card-wrapper {
+    border-radius: 5px;
+    padding: 10px 7px;
+    background: #fbfcfd;
+    transition: .4s;
+    box-shadow: 2px 3px 1px rgba(0,0,0,.15);
+}
+
+.card-wrapper:hover {
+    box-shadow: 2px 3px 10px rgba(0,0,0,0.15);
+    transition: .4s;
+}
+.card-wrapper:hover.card-wrapper-fix {
+    box-shadow: none;
+}
+
+/* -- list design */
+.list-group-item {
+    background: #fbfcfd;
+    border: none;
+    padding: 0rem 1rem;
+}
+
+.filter__pricerange-wrapper {
+    display: flex;
+}
+
+.filter__pricerange-wrapper input {
+    width: 50%;
+    max-width: 130px;
+    border: none;
+    border-bottom: 1px solid black;
+    background: transparent;
+}
+
+.filter__pricerange-wrapper input:focus {
+    border-bottom: 1px solid orange;
+    transition: .4s;
+    outline: none;
+}
+
+/* /card design */
+
+
+/*!* Create a custom checkbox *!*/
+
+
+@media screen and (max-width: 992px) {
+    .card__accuracy {
+        position: absolute;
+        top: -33px;
+        left: 10px;
+        margin: 0px auto;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .card__accuracy {
+        position: absolute;
+        top: -33px;
+        left: calc(100vw - 150px);
+        margin: 0px auto;
+        transform: rotate(0deg);
+    }
+}
+
+/* custom checkbox */
+label {
+    display: block;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    left: 20px;
+}
+
+#form label:hover {
+    font-weight: bold;
+    transition: .1s;
+}
+
+input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    list-style: none;
+    padding-left: 10px;
+}
+
+li .checkmark {
+    position: absolute;
+    left: -25px;
+    top: 2px;
+}
+
+li .checkmark:before {
+    position: absolute;
+    left: 8px;
+    top: 2px;
+    content: "";
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 4px;
+    width: 4px;
+    border-radius: 100%;
+    z-index: 1;
+    opacity: 0;
+    margin: 0;
+}
+
+li .checkmark .check {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid;
+    border-radius: 2px;
+    overflow: hidden;
+    z-index: 1;
+}
+
+li .checkmark .check:before {
+    position: absolute;
+    content: "";
+    transform: rotate(45deg);
+    display: block;
+    margin-top: -4px;
+    margin-left: 6px;
+    width: 0;
+    height: 0;
+    box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0 inset;
+    animation: checkbox-off 0.3s forwards ease-out;
+}
+
+li input[type=checkbox]:focus + .checkmark .check:after {
+    opacity: 0.2;
+}
+
+li input[type=checkbox]:checked + .checkmark .check:before {
+    box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px;
+    animation: checkbox-on 0.3s forwards ease-out;
+}
+
+li input[type=checkbox]:not(:checked) + .checkmark:before {
+    animation: rippleOff 700ms forwards ease-out;
+    margin-top: 5px;
+}
+
+li input[type=checkbox]:checked + .checkmark:before {
+    animation: rippleOn 700ms forwards ease-out;
+    margin-top: 5px;
+}
+
+li input[type=checkbox]:not(:checked) + .checkmark .check:after {
+    animation: rippleOff 700ms forwards ease-out;
+    margin-top: 5px;
+}
+
+li input[type=checkbox]:checked + .checkmark .check:after {
+    animation: rippleOn 700ms forwards ease-out;
+    margin-top: 5px;
+}
+
+li input[type=checkbox][disabled]:not(:checked) ~ .checkmark .check:before, li input[type=checkbox][disabled] + .circle {
+    opacity: 0.5;
+}
+
+li input[type=checkbox][disabled] + .checkmark .check:after {
+    background-color: rgba(0, 0, 0, 0.84);
+    transform: rotate(-45deg);
+}
+
+.coloured .checkmark .check {
+    color: #2faef8;
+}
+
+.coloured .checkmark:before {
+    background-color: #2faef8;
+}
+
+.coloured input[type=checkbox]:checked + .checkmark .check {
+    color: #2faef8;
+}
+
+@keyframes checkbox-on {
+    0% {
+        box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 15px 2px 0 11px;
+    }
+    50% {
+        box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px 2px 0 11px;
+    }
+    100% {
+        box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px;
+    }
+}
+
+@keyframes checkbox-off {
+    0% {
+        box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px, 0 0 0 0 inset;
+    }
+    25% {
+        box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px, 0 0 0 0 inset;
+    }
+    50% {
+        transform: rotate(45deg);
+        margin-top: -4px;
+        margin-left: 6px;
+        width: 0px;
+        height: 0px;
+        box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 15px 2px 0 11px, 0 0 0 0 inset;
+    }
+    51% {
+        transform: rotate(0deg);
+        margin-top: -2px;
+        margin-left: -2px;
+        width: 20px;
+        height: 20px;
+        box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0px 0px 0 10px inset;
+    }
+    100% {
+        transform: rotate(0deg);
+        margin-top: -2px;
+        margin-left: -2px;
+        width: 20px;
+        height: 20px;
+        box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0px 0px 0 0px inset;
+    }
+}
+
+@keyframes rippleOn {
+    0% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(13, 13);
+    }
+}
+
+@keyframes rippleOff {
+    0% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(13, 13);
+    }
+}
+
+/* /checkbox design */
+
+
+/* collapse filter mobile */
+
+@media screen and (max-width: 992px) {
+    .menu {
+        width: 80px;
+        cursor: pointer;
+        font-size: 20px;
+        transition: 1s;
+    }
+
+    .filter__mobile-button input[type="checkbox"]:checked + .menu {
+        box-shadow: 0 0 0 130vw #f2f5fa, 0 0 0 230vh #f2f5fa !important;
+        transition: .75s;
+        z-index: 1;
+        animation: move_filter 1s ease-in-out;
+    }
+
+    #filter_area {
+        display: none;
+    }
+
+    #filter_area.show_content {
+        display: block;
+        z-index: 2;
+        position: relative;
+        top: 20px;
+        background: #f2f5fa;
+        opacity: 1;
+        animation: show_filter 1s ease;
+    }
+
+    #filter_area.show_content + body {
+        overflow: hidden;
+    }
+}
+
+@keyframes show_filter {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* /collapse filter mobile */

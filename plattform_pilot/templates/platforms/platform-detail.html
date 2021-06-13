@@ -1,0 +1,202 @@
+{% extends 'base.html' %}
+{% load static embed_video_tags %}
+{% block meta_description %}
+    {{ platform.short_description|safe|truncatewords:50 }}
+{% endblock %}
+{% block title %}
+    {{ platform.name }} im Test - Alles was Sie wissen müssen | XYZ
+{% endblock %}
+{% block custom-css %}
+    <link rel="stylesheet" href="{% static 'css/platforms/platform-detail.css' %}"/>
+{% endblock %}
+{% block content %}
+    <div class="wrapper">
+        <div class="container-fluid img__background px-0">
+            <div class="d-flex justify-content-between bg-light">
+                <nav class="breadcrumb__wrapper p-3 pb-0" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item d-sm-inline d-none"><a href="#">Alle Kategorien</a></li>
+                        <li class="breadcrumb-divider d-sm-inline d-none">
+                            {% include '_includes/icons/chevron-double-right.svg' %}
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="{{ request.META.HTTP_REFERER }}">
+                                {{ platform.category.category }}
+                            </a>
+                        </li>
+                        <li class="breadcrumb-divider d-sm-inline d-none">
+                            {% include '_includes/icons/chevron-double-right.svg' %}
+                        </li>
+                        <li class="breadcrumb-item active d-sm-inline d-none"
+                            aria-current="page">{{ platform.name }}</li>
+                    </ol>
+                </nav>
+                <div class="d-sm-block d-flex">
+                    <a href="{{ platform.link }}" target="_blank" class="btn btn-danger rounded-0 p-3 px-5 h-100 w-100">Zur
+                        Webseite
+                        {% include '_includes/icons/chevron-right.svg' %}
+                    </a>
+                </div>
+            </div>
+            <div class="container-md pt-5 container-custom">
+                <h1><img src="{{ platform.thumbnail.url }}" width="50" class="me-3"/>{{ platform.name }}</h1>
+                <small>rating here</small>
+                <p>Kategorie - {{ platform.category.category }}</p>
+                <div class="mt-5 mx-auto py-5">
+                    <div class="row row-cols-sm-4 row-col-2 g-sm-2 g-4 rating__wrapper">
+                        {% if platform.design_rating %}
+                            <div class="col-sm-3 col-6">
+                                <div class="pie-wrapper text-center">
+                                    <p class="h4 text-center">{{ platform.design_rating|first }}<small
+                                            class="fw-small">.{{ platform.design_rating|slice:"2:" }}</small></p>
+                                    <small>Aufbau & Design</small>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="col-sm-3 col-0"></div>
+                        {% endif %}
+                        {% if platform.price_rating %}
+                            <div class="col-sm-3 col-6">
+                                <div class="pie-wrapper text-center">
+                                    <p class="h4 text-center">{{ platform.price_rating|first }}<small
+                                            class="fw-small">.{{ platform.price_rating|slice:"2:" }}</small></p>
+                                    <small>Preis-Leistungs-Verhältnis</small>
+                                </div>
+                            </div>
+                        {% endif %}
+                        <div class="col-sm-3 col-6">
+                            <div class="pie-wrapper text-center">
+                                <p class="h4 text-center">{{ function_count|first }}<small
+                                        class="fw-small">.{{ function_count|slice:"2:" }}</small></p>
+                                <small>Funktionsumfang</small>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-6">
+                            <div class="pie-wrapper text-center">
+                                <p class="h4 text-center">{{ platform.suitable_for.count }}</p>
+                                <small>Zielgruppen</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Navbar -->
+        <div class="container w-900">
+            <div class="scrollspy-nav position-absolute py-2 ps-0">
+                <a data-target="overview__wrapper" class="scrollspy-link">Übersicht</a>
+                <a data-target="pricing__wrapper" class="scrollspy-link">Kosten</a>
+                <a data-target="functions_wrapper" class="scrollspy-link">Funktionen</a>
+                <a data-target="rating__wrapper" class="scrollspy-link">Bewertung</a>
+                <span class="scrollspy-indicator"></span>
+            </div>
+        </div>
+        <!-- /Navbar -->
+        <div class="container container-custom">
+            <div id="overview__wrapper" class="row row-cols-sm-2 row-cols-1 g-5 scrollspy-section mt-5">
+                <div class="col">
+                    <h3 class="mb-3">Was ist {{ platform.name }}?</h3>
+                    {{ platform.short_description|safe }}
+                </div>
+                {% if platform.image_detail %}
+                    <div class="col">
+                        <img src="{{ platform.image_detail.url }}" class="img-fluid mt-md-5 mt-0"/>
+                    </div>
+                {% endif %}
+                <div class="col">
+                    <h3 class="mb-3">Wer benutzt {{ platform.name }}?</h3>
+                    {{ platform.who_use_it|safe }}
+                </div>
+                <div class="col">
+                    <h3 class="mb-3">Für wen ist {{ platform.name }} geeignet?</h3>
+                    <ul class="list-group list-group-flush">
+                        {% for suitable in platform.suitable_for.all %}
+                            <li class="list-group-item bg-transparent border-0">
+                                {% include '_includes/icons/check-circle.svg' %}{{ suitable.suitable_for }}
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+                    {{ platform.when_to_use|safe }}
+                </div>
+                <div class="col">
+                    <h3 class="mb-3">Wie benutzte ich {{ platform.name }}?</h3>
+                    {% if platform.tutorial %}
+                        {{ platform.tutorial|safe }}
+                    {% endif %}
+                </div>
+                {% if platform.tutorial_video %}
+                    <div class="col">
+                        <p class="mt-md-5 mt-0">Videoanleitung zur Nutzung von {{ platform.name }}</p>
+                        {% video platform.tutorial_video '100% x 300px' %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="row row-cols-1 g-5 mt-5 px-4">
+                <div class="scrollspy-section col" id="pricing__wrapper">
+                    <h3 class="mb-3">Wieviel kostet {{ platform.name }}?</h3>
+                    <div>
+                        <div class="d-flex justify-content-between pe-2">
+                            <p>Kostenlose Variante</p>
+                            {% if platform.is_free %}
+                                {% include '_includes/icons/check-circle.svg' %}
+                            {% else %}
+                                {% include '_includes/icons/x-circle.svg' %}
+                            {% endif %}
+                        </div>
+                        <div class="d-flex justify-content-between pe-2">
+                            <p>Startpreis</p>
+                            <p class="text-end">
+                                <b>{{ platform.pricing }}</b><br><small>{{ platform.pricing_note }}</small>
+                            </p>
+                        </div>
+                        {% if platform.pricing_text %}
+                            {{ platform.pricing_text|safe }}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="scrollspy-section col my-5" id="functions_wrapper">
+                    <h3 class="mb-3">Welche Funktionen bietet {{ platform.name }}?</h3>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Funktionalität</th>
+                                <th scope="col">Vorhanden</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for f in category.filter_functions.all %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ f }}</td>
+                                    <td class="text-md-start text-end">
+                                        {% if f in platform.functionality.all %}
+                                            {% include '_includes/icons/check-circle.svg' %}
+                                        {% else %}
+                                            {% include '_includes/icons/x-circle.svg' %}
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="scrollspy-section col" id="rating__wrapper">
+                    <h3 class="mb-3">Wie empfehlenswert ist {{ platform.name }}?</h3>
+                    <div>
+                        {% if platform.test_report %}
+                            {{ platform.test_report|safe }}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block custom-js %}
+    <script src="{% static 'js/platforms/platform-detail.js' %}"></script>
+{% endblock %}

@@ -19,6 +19,7 @@
         :root {
             --bg-color: #f2f5fa;
         }
+
         body {
             background: var(--bg-color);
             overflow-x: hidden;
@@ -34,6 +35,38 @@
 {% block content %}
 
 {% endblock %}
+
+<!----------- Footer ------------>
+<footer class="container mt-5">
+    <div class="row">
+        <div class="col-md-3 col-sm-6 col-12">
+            <h2>Plattformpilot</h2>
+            <h5>Die passenden Tools und Plattformen für Ihr nächstes Vorhaben.</h5>
+        </div>
+        <div class="col-md-4 col-sm-6 col-12">
+            <h5>Produkte</h5>
+            <a href="#">Alle Produkte</a>
+            <hr class="w-50">
+            <a href="#">Ich bin Produktanbieter</a>
+            <br>
+            <a href="#">Ich will mein Produkt listen</a>
+
+        </div>
+        <div class="col-md-3 col-sm-6 col-12">
+            <h5>Unternehmen</h5>
+            <a href="#">Über uns</a>
+            <br>
+            <a href="#">Impressum</a>
+            <br>
+            <a href="#">Datenschutz</a>
+            <br>
+            <a href="#">Cookie Richtlinien</a>
+            <br>
+        </div>
+        <div class="col-md-3 col-sm-6 col-12"></div>
+    </div>
+</footer>
+
 
 {% block custom-js %}
 
