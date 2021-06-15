@@ -1,14 +1,31 @@
-
 /* card design */
+/* badge pill design */
 .card__accuracy {
-    border-radius: 50px;
-    width: 130px;
-    font-size: 16px;
-    height: 47px;
+    width: 85px;
+    height: 85px;
+    font-size: 22px;
+    padding-top: 15px;
     position: absolute;
-    top: -23px;
-    left: -62px;
-    transform: rotate(-5deg);
+    top: -40px;
+    left: 17px;
+    background: #fbfcfd;
+    border-radius: 50%;
+    z-index: 1;
+    transition: .5s;
+}
+
+.card__accuracy .text {
+    font-size: 12px;
+}
+
+.card-wrapper.is_featured-border, .card-wrapper.is_featured-border .card__accuracy {
+    border: 1px solid red;
+}
+
+.card-wrapper:hover .card__accuracy {
+    position: absolute;
+    top: -65px;
+    transition: .75s;
 }
 
 .card-wrapper.card-wrapper-fix {
@@ -18,19 +35,36 @@
 }
 
 .card-wrapper {
-    border-radius: 5px;
+    border-radius: 2px;
     padding: 10px 7px;
+    padding-top: 15px;
     background: #fbfcfd;
     transition: .4s;
-    box-shadow: 2px 3px 1px rgba(0,0,0,.15);
+    box-shadow: 2px 3px 1px rgba(0, 0, 0, .15);
+    position: relative;
+    z-index: 5;
 }
 
-.card-wrapper:hover {
-    box-shadow: 2px 3px 10px rgba(0,0,0,0.15);
-    transition: .4s;
+.card-wrapper .brand__wrapper {
+    position: relative;
+    z-index: 2;
 }
-.card-wrapper:hover.card-wrapper-fix {
-    box-shadow: none;
+
+@media screen and (max-width: 575px) {
+    .card__accuracy {
+        left: calc(100vw - 110px);
+        z-index: 5;
+    }
+
+    .card-wrapper:hover .card__accuracy {
+        top: -40px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .card__accuracy {
+        left: calc(100vw - 110px);
+    }
 }
 
 /* -- list design */
@@ -63,25 +97,6 @@
 
 /*!* Create a custom checkbox *!*/
 
-
-@media screen and (max-width: 992px) {
-    .card__accuracy {
-        position: absolute;
-        top: -33px;
-        left: 10px;
-        margin: 0px auto;
-    }
-}
-
-@media screen and (max-width: 575px) {
-    .card__accuracy {
-        position: absolute;
-        top: -33px;
-        left: calc(100vw - 150px);
-        margin: 0px auto;
-        transform: rotate(0deg);
-    }
-}
 
 /* custom checkbox */
 label {
@@ -284,31 +299,50 @@ li input[type=checkbox][disabled] + .checkmark .check:after {
         width: 80px;
         cursor: pointer;
         font-size: 20px;
-        transition: 1s;
-    }
-
-    .filter__mobile-button input[type="checkbox"]:checked + .menu {
-        box-shadow: 0 0 0 130vw #f2f5fa, 0 0 0 230vh #f2f5fa !important;
         transition: .75s;
-        z-index: 1;
-        animation: move_filter 1s ease-in-out;
+    }
+    .filter__mobile-button.close {
+        cursor: pointer;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        padding: 10px;
+        margin-bottom: 15px;
     }
 
     #filter_area {
-        display: none;
+        position: absolute;
+        left: -105%;
+        top: 11vh;
+        width: 90%;
+        max-height: 90vh;
+        margin: -50px auto;
+        z-index: 9;
     }
 
-    #filter_area.show_content {
-        display: block;
-        z-index: 2;
-        position: relative;
-        top: 20px;
-        background: #f2f5fa;
-        opacity: 1;
-        animation: show_filter 1s ease;
+    #filter_area.show {
+        left: 5%;
+        transition: .75s;
+        overflow-y: auto;
+        overflow-x: hidden;
     }
 
-    #filter_area.show_content + body {
+    .mobile-background {
+        position: absolute;
+        top: 0px;
+        left: -100%;
+        width: 100%;
+        height: 2000px;
+        z-index: 9;
+        background: rgba(0,0,0,0);
+        transition: .5s;
+        overflow: hidden;
+    }
+
+    .mobile-background.show {
+        left: 0%;
+        transition: .5s;
+                background: rgba(0,0,0,0.5);
         overflow: hidden;
     }
 }
@@ -321,5 +355,6 @@ li input[type=checkbox][disabled] + .checkmark .check:after {
         opacity: 1;
     }
 }
+
 
 /* /collapse filter mobile */

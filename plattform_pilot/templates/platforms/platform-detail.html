@@ -32,8 +32,8 @@
                     </ol>
                 </nav>
                 <div class="d-sm-block d-flex">
-                    <a href="{{ platform.link }}" target="_blank" class="btn btn-danger rounded-0 p-3 px-5 h-100 w-100">Zur
-                        Webseite
+                    <a href="{{ platform.link }}" target="_blank" class="btn btn-danger rounded-0 p-3 px-sm-5 px-4 h-100 w-100">
+                        Zur Webseite
                         {% include '_includes/icons/chevron-right.svg' %}
                     </a>
                 </div>
@@ -93,7 +93,7 @@
         </div>
         <!-- /Navbar -->
         <div class="container container-custom">
-            <div id="overview__wrapper" class="row row-cols-sm-2 row-cols-1 g-5 scrollspy-section mt-5">
+            <div id="overview__wrapper" class="row row-cols-sm-2 row-cols-1 gx-md-0 gx-5 gy-5 scrollspy-section mt-5">
                 <div class="col">
                     <h3 class="mb-3">Was ist {{ platform.name }}?</h3>
                     {{ platform.short_description|safe }}
@@ -167,7 +167,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {% for f in category.filter_functions.all %}
+                            {% for f in all_functions %}
                                 <tr>
                                     <td>{{ forloop.counter }}</td>
                                     <td>{{ f }}</td>

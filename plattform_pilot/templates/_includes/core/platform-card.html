@@ -1,13 +1,15 @@
-<div class="row mb-5 position-relative card-wrapper {% if platform.is_featured %} border border-danger{% endif %}">
+<div class="row pt-0 mb-5 position-relative card-wrapper {% if platform.is_featured %} is_featured-border{% endif %}">
     <a href="{% url 'platform:platform_detail' platform.slug %}" class="text-decoration-none text-dark">
         {% if accuracy_fit %}
-            <div class="card__accuracy badge bg-white text-dark border border-success {% if platform.is_featured %}border-danger {% endif %}">
+            <div class="card__accuracy badge text-dark border-success {% if platform.is_featured %}border-danger {% endif %}">
                 100%
                 <br>
+                <span class="text">
                 PASSEND!
+                </span>
             </div>
         {% else %}
-            <div class="card__accuracy badge bg-white text-dark border {% if platform.is_featured %}border-danger {% endif %}">
+            <div class="card__accuracy badge text-dark {% if platform.is_featured %}border-danger {% endif %}">
                 {% for x in accurary %}
                     {% if platform.id == x.id and not platform.is_featured %}
                         {% if x.accuracy < 1 %}
@@ -16,14 +18,16 @@
                             {{ x.accuracy }}%
                         {% endif %}
                         <br>
+                        <span class="text">
                         PASSEND!
+                        </span>
                     {% elif platform.id == x.id and platform.is_featured %}
                         <p class="pt-2">EMPFEHLUNG</p>
                     {% endif %}
                 {% endfor %}
             </div>
         {% endif %}
-        <div class="col-sm-3">
+        <div class="col-sm-3 bg-light pt-3 brand__wrapper">
             <div class="d-sm-block d-flex">
                 <img src="{{ platform.thumbnail.url }}" width="75" class=""/>
                 <div class="ms-sm-0 ms-2">
@@ -34,7 +38,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-5 mt-sm-0 mt-3">
+        <div class="col-sm-5 mt-sm-0 mt-3 pt-3">
             <ul class="list-group">
                 {% if platform.tested %}
                     <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i><b>Von uns
@@ -55,15 +59,17 @@
                     {% include '_includes/icons/target-group.svg' %}
                     Für {{ platform.suitable_for.first }}
                     {% if platform.suitable_for.count > 1 %}
-                        <span class="badge bg-secondary position-relative" style="bottom: 3px;">+{{ platform.suitable_for.count }}</span>
+                        <span class="badge bg-secondary position-relative"
+                              style="bottom: 3px;">+{{ platform.suitable_for.count }}</span>
                     {% endif %}
                 </li>
 
             </ul>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4 pt-3">
             <div class="text-sm-end">
-                <a href="{% url 'platform:platform_detail' platform.slug %}" class="text-danger btn my-2 pe-0 d-sm-inline d-none">
+                <a href="{% url 'platform:platform_detail' platform.slug %}"
+                   class="text-danger btn my-2 pe-0 d-sm-inline d-none">
                     Mehr Erfahren
                     <i class="bi bi-chevron-right"></i>
                 </a>

@@ -1,4 +1,11 @@
 /* overwrite Bootstrap default components */
 
+:root {
+    --light: #fbfcfd;
+}
 
+.bg-light {
+    background: var(--light) !important;
+    background-color: var(--light) !important;
+}
 /* default checkbox */

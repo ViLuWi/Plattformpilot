@@ -14,8 +14,10 @@ def platform_detail(request, slug):
     category = Category.objects.get(category=platform.category)
     function_count = round(platform.functionality.count() * 10 / category.filter_functions.count(), 2)
     function_count = str(function_count)
+    all_functions = category.filter_functions.all().order_by('functionality')
     return render(request, 'platforms/platform-detail.html', {
         'platform': platform,
         'function_count': function_count,
+        'all_functions': all_functions,
         'category': category
     })
