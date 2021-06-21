@@ -22,7 +22,7 @@
                         PASSEND!
                         </span>
                     {% elif platform.id == x.id and platform.is_featured %}
-                        <p class="pt-2">EMPFEHLUNG</p>
+                        <p class="text-recommended">{% include '_includes/icons/star.svg' %}<br></p>
                     {% endif %}
                 {% endfor %}
             </div>

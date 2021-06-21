@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # apps
     'apps.core',
     'apps.platforms',
+    'apps.reviews',
     'django_filters',
     'embed_video',
 ]

@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 import uuid
 
 from django.db import models
+from django.utils.text import slugify
 from embed_video.fields import EmbedVideoField
 
 class Functionality(models.Model):
@@ -51,4 +52,8 @@ class Platform(models.Model):
 
     def __str__(self):
         return f'{self.name}'
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Platform, self).save(*args, **kwargs)
 

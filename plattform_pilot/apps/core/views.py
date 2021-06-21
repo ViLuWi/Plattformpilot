@@ -24,7 +24,14 @@ def platform_list(request, slug):
     category = Category.objects.get(slug=slug)
     platforms = Platform.objects.filter(category=category).order_by('-is_featured')
     accuracy = []
-    count = 1
+    filter_interations = 0
+    # calaculate filter iterations for function, suitable
+    for i in request.GET.getlist('funktion'):
+        filter_interations += 1
+
+    for i in request.GET.getlist('suitable_for'):
+        filter_interations += 1
+
     # ordering query
     sort_by = request.GET.get('sort_by')
     if sort_by is not None and sort_by is not '':
@@ -37,10 +44,13 @@ def platform_list(request, slug):
     related_platforms = platforms
 
     suit_list = []
-    # add values to suitable_list
+    # add values to suitable_list for 100% accuracy
     for v in f.qs.all().values('suitable_for'):
         if v['suitable_for'] not in suit_list:
             suit_list.append(v['suitable_for'])
+    for v in request.GET.getlist('suitable_for'):
+        if v not in suit_list:
+            suit_list.append(v)
 
     # remove doubled platforms form f.qs and related_platforms
     f_values = [d['id'] for d in list(f.qs.all().values('id'))]
@@ -54,21 +64,26 @@ def platform_list(request, slug):
             noo = 0
             for x in platform.functionality.all():
                 f_list.append(int(x.id))
+
+            # add all suitables to list
             for x in platform.suitable_for.all():
                 suit_list.append(int(x.id))
+
             # iterate through lists
             for count, x in enumerate(request.GET.getlist('funktion'), start=1):
                 if int(x) not in f_list:
                     noo += 1
 
-            for count, x in enumerate(request.GET.getlist('suitable_for'), start=1):
-                if int(x) not in suit_list:
+            # check suitable for values
+            for count, y in enumerate(request.GET.getlist('suitable_for'), start=1):
+                print(y)
+                if int(y) not in suit_list:
                     noo += 1
 
             if f.data.get('is_free') is None and platform.is_free or f.data.get('is_free') is not platform.is_free:
                 noo += 1
-                count += 1
-            accuracy.append({'id': platform.id, 'accuracy': int((1 - (noo / count)) * 100)})
+                filter_interations += 1
+            accuracy.append({'id': platform.id, 'accuracy': int((1 - (noo / filter_interations)) * 100)})
 
     # check if category is active
     if category.is_active:
@@ -79,6 +94,7 @@ def platform_list(request, slug):
             'suitable_list': suit_list,
             'related_platforms': related_platforms,
             'accurary': accuracy,
+            'sort_by': sort_by
         })
     else:
         return render(request, 'error/category-inactive.html')

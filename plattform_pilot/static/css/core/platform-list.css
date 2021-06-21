@@ -17,6 +17,11 @@
 .card__accuracy .text {
     font-size: 12px;
 }
+.card__accuracy .text-recommended {
+    font-size: 14px;
+    position: relative;
+    top: -5px;
+}
 
 .card-wrapper.is_featured-border, .card-wrapper.is_featured-border .card__accuracy {
     border: 1px solid red;
@@ -26,6 +31,13 @@
     position: absolute;
     top: -65px;
     transition: .75s;
+}
+.card-wrapper:hover .card__accuracy .text-recommended:after {
+    content: "Empfehlung";
+    font-size: 11px;
+    position: relative;
+    left: -5px;
+    top: 5px;
 }
 
 .card-wrapper.card-wrapper-fix {
