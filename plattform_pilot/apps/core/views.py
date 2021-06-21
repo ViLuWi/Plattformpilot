@@ -48,13 +48,15 @@ def platform_list(request, slug):
     for v in f.qs.all().values('suitable_for'):
         if v['suitable_for'] not in suit_list:
             suit_list.append(v['suitable_for'])
-    for v in request.GET.getlist('suitable_for'):
-        if v not in suit_list:
-            suit_list.append(v)
+    for x in f.qs.all():
+        for y in Platform.objects.get(name=x).suitable_for.all():
+            if y.id not in suit_list:
+                suit_list.append(y.id)
 
     # remove doubled platforms form f.qs and related_platforms
     f_values = [d['id'] for d in list(f.qs.all().values('id'))]
     rel_values = [d['id'] for d in list(related_platforms.values('id'))]
+
     for i in list(rel_values):
         if i in f_values:
             related_platforms = related_platforms.exclude(id=i)
@@ -62,6 +64,7 @@ def platform_list(request, slug):
             platform = Platform.objects.get(id=i)
             f_list = []
             noo = 0
+            filter_interations = 0
             for x in platform.functionality.all():
                 f_list.append(int(x.id))
 
@@ -71,18 +74,20 @@ def platform_list(request, slug):
 
             # iterate through lists
             for count, x in enumerate(request.GET.getlist('funktion'), start=1):
+                filter_interations += 1
                 if int(x) not in f_list:
                     noo += 1
 
-            # check suitable for values
+            # check suitable for values (y = checked values)
             for count, y in enumerate(request.GET.getlist('suitable_for'), start=1):
-                print(y)
+                filter_interations += 1
                 if int(y) not in suit_list:
                     noo += 1
 
             if f.data.get('is_free') is None and platform.is_free or f.data.get('is_free') is not platform.is_free:
                 noo += 1
                 filter_interations += 1
+            print(noo, filter_interations)
             accuracy.append({'id': platform.id, 'accuracy': int((1 - (noo / filter_interations)) * 100)})
 
     # check if category is active
