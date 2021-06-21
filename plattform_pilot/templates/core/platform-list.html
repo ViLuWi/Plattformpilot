@@ -54,7 +54,7 @@
                         <a href="{% url 'core:platform_list' category.slug %}?is_free=on"
                            class="text-decoration-none text-primary">Filter zurücksetzen</a>
                     </div>
-                    <div class="mt-5 card-wrapper card-wrapper-fix order-5">
+                    <div class="mt-5 card-wrapper card-wrapper-fix d-lg-block d-none">
                         <h5>Ähnliche Kategorien</h5>
                         {% for category in category.related_category.all %}
                             <a href="{% url 'core:platform_list' category.slug %}?is_free=on">{{ category }}</a>
@@ -72,7 +72,7 @@
                         </div>
                         <div class="d-flex">
                             <p class="my-auto me-2" class="">Sortieren</p>
-                            <select name="sort_by" id="sort_by" class="form-select border-dark rounded-0">
+                            <select name="sort_by" id="sort_by" class="form-select border-dark rounded-0" onchange="window.location.reload()">
                                 <option value="">Empfehlung</option>
                                 <option value="-name">Name A-Z</option>
                                 <option value="name">Name Z-A</option>
