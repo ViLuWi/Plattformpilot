@@ -1,0 +1,11 @@
+<form id="form" method="POST">
+    {% csrf_token %}
+    <label for=""
+    <input type="radio" value="1" name="rating"/>
+    <input type="radio" value="2" name="rating"/>
+    <input type="radio" value="3" name="rating"/>
+    <input type="radio" value="4" name="rating"/>
+    <input type="radio" value="5" name="rating"/>
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-outline-success rounded-0">Bewerten</button>
+</form>
