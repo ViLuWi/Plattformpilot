@@ -1,10 +1,67 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block meta_description %}
+
+{% endblock %}
+
+{% block meta_robots %}
+
+{% endblock %}
+
+{% block title %}
+    Didaktische Plattformen im Vergleich - Plattformpilot
+{% endblock %}
+
+{% block custom-css %}
+    <link rel="stylesheet" href="{% static 'css/core/index.css' %}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script>
+{% endblock %}
 
 {% block content %}
-    <ul>
-        {% for category in categories %}
-            <li><a href="{% url 'core:platform_list' category.slug %}"?is_free=on>{{ category.category }}</a></li>
-        {% endfor %}
-    </ul>
+    <div class="top__wrapper">
+        <div class="top-bg-image">
+            {% include '_includes/core/index-bg.svg' %}
+        </div>
+        <div class="position-absolute top-50 start-50 translate-middle top-content">
+            <h1 class="position-relative">Finden und vergleichen Sie didaktische Plattform innerhalb von Minuten.</h1>
+            <form class="" id="form" method="GET">
+                <input type="text" name="search" id="search" class="form-control w-100" placeholder="KATEGORIE FINDEN">
+                <h6 class="mt-4">Beliebte Kategorien</h6>
+                <div class="d-inline">
+                    {% for category in categories|slice:4 %}
+                        <a href="{% url 'core:platform_list' category.slug %}?is_free=on"
+                           class="text-decoration-none text-dark">
+                            {{ category.category }} -
+                        </a>
+                        {% if forloop.last %}
+                            Alle Kategorien
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </form>
+        </div>
+    </div>
 
+{% endblock %}
+
+{% block custom-js %}
+    <script>
+        $(function () {
+            let availableTags = [
+                {% for category in categories %}
+                    {
+                        value: '{{ category.slug }}',
+                        label: "{{ category }}"
+                    },
+                {% endfor %}
+            ];
+            $("#search").autocomplete({
+                source: availableTags,
+                select: function (e, ui) {
+                    window.location.href = ui.item.value + '?is_free=on'
+                }
+            });
+        });
+    </script>
 {% endblock %}

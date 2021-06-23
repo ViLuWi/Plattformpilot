@@ -21,18 +21,25 @@
                         </li>
                         <li class="breadcrumb-item">
                             <a href="{{ request.META.HTTP_REFERER }}">
+                                <span class="d-sm-block d-none">
                                 {{ platform.category.category }}
+                                </span>
+                                <span class="d-sm-none d-block">
+                                {% include '_includes/icons/chevron-double-left.svg' %}
+                                    Zurück
+                                </span>
                             </a>
                         </li>
                         <li class="breadcrumb-divider d-sm-inline d-none">
                             {% include '_includes/icons/chevron-double-right.svg' %}
                         </li>
                         <li class="breadcrumb-item active d-sm-inline d-none"
-                            aria-current="page">{{ platform.name }}</li>
+                            aria-current="page"><img src="{{ platform.thumbnail.url }}" width="20"></li>
                     </ol>
                 </nav>
                 <div class="d-sm-block d-flex">
-                    <a href="{{ platform.link }}" target="_blank" class="btn btn-danger rounded-0 p-3 px-sm-5 px-4 h-100 w-100">
+                    <a href="{{ platform.link }}" target="_blank"
+                       class="btn btn-danger rounded-0 p-3 px-sm-5 px-4 h-100 w-100">
                         Zur Webseite
                         {% include '_includes/icons/chevron-right.svg' %}
                     </a>
@@ -67,7 +74,7 @@
                         <div class="col-sm-3 col-6">
                             <div class="pie-wrapper text-center">
                                 <p class="h4 text-center">{{ function_count|first }}<small
-                                        class="fw-small">.{{ function_count|slice:"2:" }}</small></p>
+                                        class="fw-small">.{{ function_count|slice:"3:" }}</small></p>
                                 <small>Funktionsumfang</small>
                             </div>
                         </div>
@@ -93,14 +100,14 @@
         </div>
         <!-- /Navbar -->
         <div class="container container-custom">
-            <div id="overview__wrapper" class="row row-cols-sm-2 row-cols-1 gx-md-0 gx-5 gy-5 scrollspy-section mt-5">
+            <div id="overview__wrapper" class="row row-cols-sm-2 row-cols-1 gx-5 gy-5 scrollspy-section mt-5">
                 <div class="col">
                     <h3 class="mb-3">Was ist {{ platform.name }}?</h3>
                     {{ platform.short_description|safe }}
                 </div>
                 {% if platform.image_detail %}
                     <div class="col">
-                        <img src="{{ platform.image_detail.url }}" class="img-fluid mt-md-5 mt-0"/>
+                        <img src="{{ platform.image_detail.url }}" class="img-fluid mt-0"/>
                     </div>
                 {% endif %}
                 <div class="col">
@@ -109,9 +116,9 @@
                 </div>
                 <div class="col">
                     <h3 class="mb-3">Für wen ist {{ platform.name }} geeignet?</h3>
-                    <ul class="list-group list-group-flush">
+                    <ul class="list-group list-group-flush mb-2">
                         {% for suitable in platform.suitable_for.all %}
-                            <li class="list-group-item bg-transparent border-0">
+                            <li class="list-group-item bg-transparent border-0 py-0">
                                 {% include '_includes/icons/check-circle.svg' %}{{ suitable.suitable_for }}
                             </li>
                         {% endfor %}
@@ -147,7 +154,7 @@
                         <div class="d-flex justify-content-between pe-2">
                             <p>Startpreis</p>
                             <p class="text-end">
-                                <b>{{ platform.pricing }}</b><br><small>{{ platform.pricing_note }}</small>
+                                <b>{{ platform.pricing }}€</b><br><small>{{ platform.pricing_note }}</small>
                             </p>
                         </div>
                         {% if platform.pricing_text %}
@@ -170,7 +177,9 @@
                             {% for f in all_functions %}
                                 <tr>
                                     <td>{{ forloop.counter }}</td>
-                                    <td>{{ f }}</td>
+                                    <td class="{% if f in platform.functionality.all %}fw-bold {% endif %}">
+                                        {{ f }}
+                                    </td>
                                     <td class="text-md-start text-end">
                                         {% if f in platform.functionality.all %}
                                             {% include '_includes/icons/check-circle.svg' %}
@@ -185,12 +194,12 @@
                     </div>
                 </div>
                 <div class="scrollspy-section col" id="rating__wrapper">
-                    <h3 class="mb-3">Wie empfehlenswert ist {{ platform.name }}?</h3>
-                    <div>
-                        {% if platform.test_report %}
+                    {% if platform.test_report %}
+                        <h3 class="mb-3">Wie empfehlenswert ist {{ platform.name }}?</h3>
+                        <div>
                             {{ platform.test_report|safe }}
-                        {% endif %}
-                    </div>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

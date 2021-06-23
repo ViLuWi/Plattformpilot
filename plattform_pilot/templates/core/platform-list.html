@@ -11,8 +11,8 @@
         <div class="mb-3">
             <h1 class="h2">{{ category|capfirst }}</h1>
             <a href="{% url 'core:index' %}" class="text-decoration-none">
-                <i class="bi bi-chevron-double-left position-relative" style="font-size: 0.75rem; bottom:1px;">
-                </i> Kategorie ändern</a>
+                {% include '_includes/icons/chevron-double-left.svg' %}
+                 Kategorie ändern</a>
         </div>
         <div class="filter__mobile-button d-lg-none d-flex justify-content-end">
             <div class='menu'>
@@ -28,10 +28,7 @@
                         <h5>
                             Funktionen
                             <span class="filter__mobile-button close">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                 class="bi bi-x-lg d-lg-none d-block" viewBox="0 0 16 16">
-                                <path d="M1.293 1.293a1 1 0 0 1 1.414 0L8 6.586l5.293-5.293a1 1 0 1 1 1.414 1.414L9.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414L8 9.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L6.586 8 1.293 2.707a1 1 0 0 1 0-1.414z"/>
-                            </svg>
+                                {% include '_includes/icons/close.svg' %}
                             </span>
                         </h5>
                         {{ filter.form.funktion }}
@@ -71,11 +68,14 @@
                             <p class="my-auto">Insgesamt: <b id="amount_products">{{ filter.qs.count }}</b></p>
                         </div>
                         <div class="d-flex">
-                            <p class="my-auto me-2" class="">Sortieren</p>
-                            <select name="sort_by" id="sort_by" class="form-select border-dark rounded-0" onchange="window.location.reload()">
-                                <option value="">Empfehlung</option>
-                                <option value="-name">Name A-Z</option>
-                                <option value="name">Name Z-A</option>
+                            <p class="my-auto me-2 d-sm-block d-none" class="">Sortieren</p>
+                            <select name="sort_by" id="sort_by" class="form-select border-dark rounded-0"
+                                    onchange="document.getElementById('form').submit()">
+                                <option value="name" disabled>Sortieren nach</option>
+                                <option value="name">Name A-Z</option>
+                                <option value="-name">Name Z-A</option>
+                                <option value="pricing">Preis aufsteigend</option>
+                                <option value="-pricing">Preis absteigend</option>
                             </select>
                         </div>
                     </div>
@@ -99,6 +99,7 @@
             </div>
         </form>
     </div>
+    <div class="d-none" id="sorting">{{ sorting }}</div>
 {% endblock %}
 
 {% block custom-js %}
@@ -124,7 +125,6 @@
                 // remove suitable_for values
                 if (what_to_filter === 'suitable_for') {
                     let input_val = document.getElementById('id_suitable_for_' + i)
-                    console.log(array, input_val.value)
                     if (!array.includes(parseFloat(input_val.value))) {
                         document.querySelector('label[for="id_suitable_for_' + i + '"]').parentElement.remove()
                     }
@@ -176,11 +176,12 @@
 
         // select sorted value in sort_by
         const sort_by_input = document.getElementById('sort_by')
-        let sort_by = {{ sort_by }}
+        let sort_by = document.getElementById('sorting').innerText;
         console.log(sort_by)
-        for (let i = 0; i < 2; i++) {
+        for (let i = 0; i < 4; i++) {
+            console.log(sort_by_input.options[i].value.toString())
             if (sort_by.toString() === sort_by_input.options[i].value.toString()) {
-                console.log(i)
+                sort_by_input.options[i].selected = true
             }
 
         }

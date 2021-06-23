@@ -1,11 +1,57 @@
 /* overwrite Bootstrap default components */
 
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap');
+
 :root {
+    --bg-color: #f2f5fa;
     --light: #fbfcfd;
+    --success: #02A340;
+    --warning: #F2DD03;
+    --danger: #A22A02;
+    --dark: #00040A;
+}
+
+body {
+    background: var(--bg-color);
+    overflow-x: hidden;
+    touch-action: cross-slide-x;
+    -ms-touch-action: cross-slide-x;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+}
+
+a {
+    text-decoration: none;
+    color: var(--danger);
+    transition: .3s;
+}
+
+a:hover {
+    color: var(--dark);
+    transition: .3s;
 }
 
 .bg-light {
     background: var(--light) !important;
     background-color: var(--light) !important;
 }
-/* default checkbox */
+
+input:focus {
+    box-shadow: none !important;
+}
+
+.w-900 {
+    max-width: 900px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+}
+
+/* footer */
+
+
+
+/* #/footer */

@@ -34,6 +34,7 @@ def platform_list(request, slug):
 
     # ordering query
     sort_by = request.GET.get('sort_by')
+    print(sort_by)
     if sort_by is not None and sort_by is not '':
         platforms = platforms.order_by('-is_featured', sort_by)
 
@@ -87,7 +88,7 @@ def platform_list(request, slug):
             if f.data.get('is_free') is None and platform.is_free or f.data.get('is_free') is not platform.is_free:
                 noo += 1
                 filter_interations += 1
-            print(noo, filter_interations)
+
             accuracy.append({'id': platform.id, 'accuracy': int((1 - (noo / filter_interations)) * 100)})
 
     # check if category is active
@@ -99,7 +100,7 @@ def platform_list(request, slug):
             'suitable_list': suit_list,
             'related_platforms': related_platforms,
             'accurary': accuracy,
-            'sort_by': sort_by
+            'sorting': str(sort_by)
         })
     else:
         return render(request, 'error/category-inactive.html')
