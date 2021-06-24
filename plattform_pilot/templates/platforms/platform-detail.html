@@ -20,7 +20,7 @@
                             {% include '_includes/icons/chevron-double-right.svg' %}
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{ request.META.HTTP_REFERER }}">
+                            <a href="{% url 'core:platform_list' platform.category.slug %}?is_free=on">
                                 <span class="d-sm-block d-none">
                                 {{ platform.category.category }}
                                 </span>
@@ -205,6 +205,10 @@
         </div>
     </div>
     <div class="review__wrapper w-900 container">
+    <div class="d-flex justify-content-between">
+    <h3>Bewertungen</h3>
+        <span>{{ av_rating }}</span>
+    </div>
     {% include '_includes/platforms/review-form.html' %}
     </div>
 {% endblock %}

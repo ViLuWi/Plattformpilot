@@ -42,3 +42,15 @@ window.addEventListener('scroll', () => {
         scroll_nav.classList.remove('fix-scrollspy')
     }
 })
+
+// check submitted rating form
+const rating = document.querySelectorAll('input[name="rating"]')
+let check_rating = () => {
+    for (let i = 1; i <= rating.length; i++) {
+        if (document.getElementById('radio'+i).checked) {
+            document.getElementById('form').submit();
+        } else {
+            console.log('Kein rating')
+        }
+    }
+}

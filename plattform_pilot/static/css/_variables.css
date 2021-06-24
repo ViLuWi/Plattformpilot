@@ -9,13 +9,17 @@
     --warning: #F2DD03;
     --danger: #A22A02;
     --dark: #00040A;
+    --orange: #FD6F40;
+}
+
+html, body {
+    overflow-x: hidden;
+    touch-action: cross-slide-x;
+    -ms-touch-action: cross-slide-x;
 }
 
 body {
     background: var(--bg-color);
-    overflow-x: hidden;
-    touch-action: cross-slide-x;
-    -ms-touch-action: cross-slide-x;
     font-family: 'Source Sans Pro', sans-serif;
 }
 

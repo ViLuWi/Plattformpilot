@@ -10,6 +10,7 @@ from django.urls import reverse
 
 from .models import Category
 from .filters import *
+from ..platforms.functions import calc_rating
 from ..platforms.models import Platform
 
 
@@ -45,6 +46,7 @@ def platform_list(request, slug):
     related_platforms = platforms
 
     suit_list = []
+    rating_list = []
     # add values to suitable_list for 100% accuracy
     for v in f.qs.all().values('suitable_for'):
         if v['suitable_for'] not in suit_list:
@@ -59,10 +61,10 @@ def platform_list(request, slug):
     rel_values = [d['id'] for d in list(related_platforms.values('id'))]
 
     for i in list(rel_values):
+        platform = Platform.objects.get(id=i)
         if i in f_values:
             related_platforms = related_platforms.exclude(id=i)
         else:
-            platform = Platform.objects.get(id=i)
             f_list = []
             noo = 0
             filter_interations = 0
@@ -88,8 +90,11 @@ def platform_list(request, slug):
             if f.data.get('is_free') is None and platform.is_free or f.data.get('is_free') is not platform.is_free:
                 noo += 1
                 filter_interations += 1
-
+            # add accuracy and rating to platform
             accuracy.append({'id': platform.id, 'accuracy': int((1 - (noo / filter_interations)) * 100)})
+
+        rating_list.append({'id': platform.id, 'rating': calc_rating(platform.id)},)
+        print(rating_list)
 
     # check if category is active
     if category.is_active:
@@ -100,7 +105,8 @@ def platform_list(request, slug):
             'suitable_list': suit_list,
             'related_platforms': related_platforms,
             'accurary': accuracy,
-            'sorting': str(sort_by)
+            'sorting': str(sort_by),
+            'rating_list': rating_list
         })
     else:
         return render(request, 'error/category-inactive.html')
