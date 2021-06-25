@@ -201,15 +201,17 @@
                         </div>
                     {% endif %}
                 </div>
+                <div class="review__wrapper col">
+                    <div class="d-flex justify-content-between">
+                        <h3>Bewertungen</h3>
+                        {% if av_rating > 0 %}
+                            <span>{{ av_rating|floatformat:1 }}</span>
+                        {% endif %}
+                    </div>
+                    {% include '_includes/platforms/review-form.html' %}
+                </div>
             </div>
         </div>
-    </div>
-    <div class="review__wrapper w-900 container">
-    <div class="d-flex justify-content-between">
-    <h3>Bewertungen</h3>
-        <span>{{ av_rating }}</span>
-    </div>
-    {% include '_includes/platforms/review-form.html' %}
     </div>
 {% endblock %}
 

@@ -45,10 +45,15 @@ window.addEventListener('scroll', () => {
 
 // check submitted rating form
 const rating = document.querySelectorAll('input[name="rating"]')
+const author_input = document.getElementById('id_author')
 let check_rating = () => {
     for (let i = 1; i <= rating.length; i++) {
         if (document.getElementById('radio'+i).checked) {
-            document.getElementById('form').submit();
+            if (author_input.value !== '') {
+                document.getElementById('form').submit();
+            } else {
+                author_input.style.border = '2px solid var(--danger)'
+            }
         } else {
             console.log('Kein rating')
         }

@@ -30,7 +30,7 @@
     font-size: 16px;
 }
 
-.rating__wrapper, .w-900, .container-custom {
+.rating__wrapper, .container-custom {
     max-width: 990px;
     margin: 0 auto;
 }
@@ -54,7 +54,7 @@
     position: absolute;
     height: 3px;
     width: 0;
-    background: var(--bs-danger);
+    background: var(--danger);
     bottom: 0;
     left: 0;
     transition: width 0.3s, left 0.1s;
@@ -94,7 +94,7 @@ input[type="radio"] {
 
 .star-label {
     color: var(--dark);
-    font-size: 20px;
+    font-size: 25px;
 }
 
 .clasificacion {
@@ -105,10 +105,15 @@ input[type="radio"] {
 .star-label:hover,
 .star-label:hover ~ .star-label {
     color: var(--orange);
+    cursor: pointer;
 }
 
 input[type="radio"]:checked ~ .star-label {
     color: var(--orange);
+}
+
+textarea {
+    width: 100%;
 }
 
 .star-rating {

@@ -90,11 +90,10 @@ def platform_list(request, slug):
             if f.data.get('is_free') is None and platform.is_free or f.data.get('is_free') is not platform.is_free:
                 noo += 1
                 filter_interations += 1
-            # add accuracy and rating to platform
+            # add accuracy
             accuracy.append({'id': platform.id, 'accuracy': int((1 - (noo / filter_interations)) * 100)})
-
+        # add average rating to platforms
         rating_list.append({'id': platform.id, 'rating': calc_rating(platform.id)},)
-        print(rating_list)
 
     # check if category is active
     if category.is_active:

@@ -100,7 +100,7 @@
                 {% for x in rating_list %}
                     {% if platform.id == x.id %}
                         {% if x.rating > 0 %}
-                            <span>{{ x.rating|stars_half|safe }} ({{ x.rating }})</span>
+                            <span>{{ x.rating|stars_half|safe }} ({{ x.rating|floatformat:1 }})</span>
                         {% else %}
                             <span>Keine Bewertung</span>
                         {% endif %}

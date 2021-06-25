@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static stars %}
+{% block meta_robots %}
+    noindex, nofollow
+{% endblock %}
+
+{% block meta_description %}
+
+{% endblock %}
+
+{% block title %}
+    Bewertungen zur Plattform {{ platform.name }}
+{% endblock %}
+
+{% block custom-css %}
+<style>
+.star-rating {
+    color: var(--orange);
+}
+</style>
+{% endblock %}
+
+{% block content %}
+    <div class="container w-900">
+        <div class="mt-5"></div>
+    <a href="{% url 'platform:platform_detail' platform.slug %}">
+        {% include '_includes/icons/chevron-double-left.svg' %} Zurück
+    </a>
+        <h1>Bewertungen zur Plattform {{ platform.name }}</h1>
+        <form method="GET" id="form">
+            <div class="d-flex justify-content-start">
+                <select name="date" class="form-select border-dark rounded-0 me-2">
+                    <option value="-created_at">Neueste zuerst</option>
+                    <option value="created_at">Älteste zuerst</option>
+                </select>
+                <select name="rating" class="form-select border-dark rounded-0 me-2">
+                    <option value="-rating">Beste Bewertungen zuerst</option>
+                    <option value="rating">Schlechteste Bewertungen zuerst</option>
+                </select>
+                <button type="submit" class="btn btn-outline-dark rounded-0">Sortieren</button>
+            </div>
+        </form>
+        <div class="mt-5">
+            {% for review in page_obj %}
+                <div class="p-2 my-3 bg-light shadow-sm">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <b>{{ review.author }}</b>
+                            <br>
+                            <small class="position-relative" style="top: -5px;">{{ review.created_at }}</small>
+                        </div>
+                        <span class="star-rating">{{ review.rating|stars|safe }}</span>
+                    </div>
+                    {% if review.content %}
+                        <p>{{ review.content }}</p>
+                    {% endif %}
+                </div>
+                {% empty %}
+                <p class="text-center border p-5">
+                    Sieht so aus, als gibt es noch keine Bewertungen. <br> Mach den Anfang und schreib die erste Bewertung <a href="{% url 'platform:platform_detail' platform.slug %}#rating__wrapper">hier</a>
+                </p>
+            {% endfor %}
+        </div>
+        <div class="pagination d-flex justify-content-center mt-4">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">
+                        {% include '_includes/icons/chevron-double-left.svg' %}
+                    </a>
+                    <a href="?page={{ page_obj.previous_page_number }}">
+                    {% include '_includes/icons/chevron-left.svg' %}
+                    </a>
+                {% endif %}
+
+                <span class="current">
+                    {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">
+                    {% include '_includes/icons/chevron-right.svg' %}
+                    </a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">
+                        {% include '_includes/icons/chevron-double-right.svg' %}
+                    </a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+{% endblock %}
+
+{% block custom-js %}
+    <script>
+
+    </script>
+{% endblock %}

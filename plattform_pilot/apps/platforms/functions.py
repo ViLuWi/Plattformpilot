@@ -1,7 +1,7 @@
 from apps.platforms.models import Platform
 from apps.reviews.models import Review
 
-
+# calculate average rating
 def calc_rating(id):
     platform = Platform.objects.get(id=id)
     reviews = Review.objects.all().exclude(is_checked=False)
