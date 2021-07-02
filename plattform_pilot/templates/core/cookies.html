@@ -12,6 +12,7 @@
 {% endblock %}
 
 {% block content %}
+    {% include '_includes/base/navbar.html' %}
     <div class="container w-900 py-5">
         Cookies sind Textdateien, die Daten von besuchten Websites oder Domains enthalten und von einem Browser auf dem
         Computer des Benutzers gespeichert werden. Ein Cookie dient in erster Linie dazu, die Informationen über einen
@@ -31,7 +32,7 @@
         <label for="marketing">Marketing</label>
         <input type="checkbox" id="marketing">
         <p class="invisible" id="cookie_law_number">0</p>
-        <div class="btn btn-success" onclick="countCookieLawNumber()">Aktualisieren</div>
+        <div class="btn btn-success" onclick="renewCookie()">Aktualisieren</div>
     </div>
 {% endblock %}
 
@@ -39,11 +40,10 @@
     <script>
         const tracking = document.getElementById('tracking')
         const marketing = document.getElementById('marketing')
-        if (document.cookie.includes('tracking')) {
+        if (getCookie('law_cookie').includes('tracking')) {
             tracking.checked = true;
-            // google code here
         }
-        if (document.cookie.includes('marketing')) {
+        if (getCookie('law_cookie').includes('marketing')) {
             marketing.checked = true;
         }
     </script>

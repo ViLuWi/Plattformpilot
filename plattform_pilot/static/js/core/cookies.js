@@ -1,15 +1,24 @@
 // create cookie
 let cookie_set = false
 
+
 function countCookieLawNumber(all) {
     let cookie_number = ''
+    if (document.getElementById('necessary').checked || all == 'all') {
+        cookie_number += 'necessary ';
+    }
     if (document.getElementById('tracking').checked || all == 'all') {
         cookie_number += 'tracking ';
     }
     if (document.getElementById('marketing').checked || all == 'all') {
         cookie_number += 'marketing ';
     }
-    setCookie('law_cookie', cookie_number, 90)
+    checkCookie()
+    if (!cookie_set) {
+        setCookie('law_cookie', cookie_number, 90)
+    } else {
+        setCookie('law_cookie', cookie_number, 90)
+    }
     window.location.reload()    // reload to see changes
 }
 
@@ -20,7 +29,7 @@ function setCookie(name, value, daysToLive) {
     if (typeof daysToLive === "number") {
         /* Sets the max-age attribute so that the cookie expires
         after the specified number of days */
-        cookie += ";max-age=" + (daysToLive * 24 * 60 * 60) + ';SameSite=Lax;Secure';
+        cookie += ";max-age=" + (daysToLive * 24 * 60 * 60) + ';Secure;path=/';
 
         document.cookie = cookie;
         cookie_set = true
@@ -33,8 +42,8 @@ function getCookie(name) {
     let cookieArr = document.cookie.split(";");
 
     // Loop through the array elements
-    for (var i = 0; i < cookieArr.length; i++) {
-        var cookiePair = cookieArr[i].split("=");
+    for (let i = 0; i < cookieArr.length; i++) {
+        let cookiePair = cookieArr[i].split("=");
 
         /* Removing whitespace at the beginning of the cookie name
         and compare it with the given string */
@@ -44,6 +53,10 @@ function getCookie(name) {
         }
     }
     return null;
+}
+
+function renewCookie() {
+    countCookieLawNumber('custom')
 }
 
 // check if cookie exist
