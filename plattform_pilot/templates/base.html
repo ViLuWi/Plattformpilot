@@ -16,6 +16,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/_variables.css' %}"/>
+    <script src="{% static 'js/core/cookies.js' %}"></script>
     {% block custom-css %}
 
     {% endblock %}
@@ -49,9 +50,9 @@
             <br>
             <a href="#">Wie bewerten wir?</a>
             <br>
-            <a href="#">Impressum</a>
+            <a href="{% url 'core:terms' %}#m3">Impressum</a>
             <br>
-            <a href="#">Datenschutz</a>
+            <a href="{% url 'core:terms' %}">Datenschutz</a>
             <br>
             <a href="#">Cookie Richtlinien</a>
             <br>
@@ -60,6 +61,39 @@
     </div>
 </footer>
 <!------- #/Footer -------->
+
+<!-- cookies --->
+<div class="d-none" id="cookie__wrapper">
+    <div class="overlay position-fixed"></div>
+    <div class="position-fixed bg-light cookie-consent">
+        <div class="modal-body">
+            Wir verwendet Cookies um Ihnen den Besuch so angenehm wie möglich zu gestalten.
+            <div class="collapse" id="cookie-collapse">
+                <div class="">
+                    <label for="necessary">Notwendig</label>
+                    <input type="checkbox" id="necessary" checked disabled>
+                </div>
+                <div class="">
+                    <label for="google">Tracking</label>
+                    <input type="checkbox" id="google">
+                </div>
+                <button type="button" onclick="countCookieLawNumber('')"
+                        class="btn btn-sm btn-outline-secondary rounded-0">
+                    Einstellung Speichern
+                </button>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between p-3">
+            <button type="button" class="btn btn-secondary rounded-0 btn-sm" data-bs-toggle="collapse"
+                    data-bs-target="#cookie-collapse" aria-expanded="false" aria-controls="cookie-collapse">
+                Konfigurieren
+            </button>
+            <button class="btn btn-success rounded-0 btn-sm" onclick="countCookieLawNumber('all')">Allen Zustimmen!
+            </button>
+        </div>
+    </div>
+</div>
+<!-- /cookies -->
 
 {% block custom-js %}
 

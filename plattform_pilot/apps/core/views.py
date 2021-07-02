@@ -109,3 +109,10 @@ def platform_list(request, slug):
         })
     else:
         return render(request, 'error/category-inactive.html')
+
+
+def terms(request):
+    return render(request, 'core/terms.html')
+
+def cookies(request):
+    return render(request, 'core/cookies.html')

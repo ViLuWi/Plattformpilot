@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta_robots %}
+    noindex, nofollow
+{% endblock %}
+{% block meta_description %}
+    Im Folgenden erhalten Sie eine Übersicht der Rechtsgrundlagen der DSGVO, auf deren Basis wir personenbezogene
+    Daten verarbeiten. Bitte nehmen Sie zur Kenntnis, dass neben den Regelungen der DSGVO nationale
+    Datenschutzvorgaben in Ihrem bzw. unserem Wohn- oder Sitzland gelten können. Sollten ferner im Einzelfall
+    speziellere Rechtsgrundlagen maßgeblich sein, teilen wir Ihnen diese in der Datenschutzerklärung mit.
+{% endblock %}
+
+{% block content %}
+    <div class="container w-900 py-5">
+        Cookies sind Textdateien, die Daten von besuchten Websites oder Domains enthalten und von einem Browser auf dem
+        Computer des Benutzers gespeichert werden. Ein Cookie dient in erster Linie dazu, die Informationen über einen
+        Benutzer während oder nach seinem Besuch innerhalb eines Onlineangebotes zu speichern. Zu den gespeicherten
+        Angaben können z.B. die Spracheinstellungen auf einer Webseite, der Loginstatus, ein Warenkorb oder die Stelle,
+        an der ein Video geschaut wurde, gehören. Zu dem Begriff der Cookies zählen wir ferner andere Technologien, die
+        die gleichen Funktionen wie Cookies erfüllen (z.B. wenn Angaben der Nutzer anhand pseudonymer
+        Onlinekennzeichnungen gespeichert werden, auch als "Nutzer-IDs" bezeichnet).
+        Weitere Informationen zum Einsatz von Cookies finden sie <a href="{% url 'core:terms' %}#m134">hier</a>.
+    </div>
+    </div>
+    <div>
+        <label for="tracking">Tracking</label>
+        <input type="checkbox" id="tracking">
+        <label for="google">Google</label>
+        <input type="checkbox" id="google">
+        <label for="marketing">Marketing</label>
+        <input type="checkbox" id="marketing">
+        <p class="invisible" id="cookie_law_number">0</p>
+        <div class="btn btn-success" onclick="countCookieLawNumber()">Aktualisieren</div>
+    </div>
+{% endblock %}
+
+{% block custom-js %}
+    <script>
+        const tracking = document.getElementById('tracking')
+        const marketing = document.getElementById('marketing')
+        if (document.cookie.includes('tracking')) {
+            tracking.checked = true;
+            // google code here
+        }
+        if (document.cookie.includes('marketing')) {
+            marketing.checked = true;
+        }
+    </script>
+{% endblock %}
