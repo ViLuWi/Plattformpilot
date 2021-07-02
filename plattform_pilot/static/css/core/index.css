@@ -86,9 +86,25 @@
 
 .main__wrapper {
     z-index: 2;
-    height: 400px;
     width: 100%;
     background: var(--bg-color);
+}
+
+#tooltip {
+    background-color: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+#tooltip {
+  /* ... */
+  display: none;
+}
+
+#tooltip[data-show] {
+  display: block;
 }
 
 /* #/main wrapper */

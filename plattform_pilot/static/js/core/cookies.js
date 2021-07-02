@@ -27,8 +27,7 @@ function setCookie(name, value, daysToLive) {
     let cookie = name + "=" + encodeURIComponent(value);
 
     if (typeof daysToLive === "number") {
-        /* Sets the max-age attribute so that the cookie expires
-        after the specified number of days */
+        // if development remove Secure for Safari
         cookie += ";max-age=" + (daysToLive * 24 * 60 * 60) + ';Secure;path=/';
 
         document.cookie = cookie;

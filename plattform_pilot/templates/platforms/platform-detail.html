@@ -54,7 +54,7 @@
                         {% if platform.design_rating %}
                             <div class="col-sm-3 col-6">
                                 <div class="pie-wrapper text-center">
-                                    <p class="h4 text-center">{{ platform.design_rating|first }}<small
+                                    <p class="h4 text-center fw-bold">{{ platform.design_rating|first }}<small
                                             class="fw-small">.{{ platform.design_rating|slice:"2:" }}</small></p>
                                     <small>Aufbau & Design</small>
                                 </div>
@@ -65,7 +65,7 @@
                         {% if platform.price_rating %}
                             <div class="col-sm-3 col-6">
                                 <div class="pie-wrapper text-center">
-                                    <p class="h4 text-center">{{ platform.price_rating|first }}<small
+                                    <p class="h4 text-center fw-bold">{{ platform.price_rating|first }}<small
                                             class="fw-small">.{{ platform.price_rating|slice:"2:" }}</small></p>
                                     <small>Preis-Leistungs-Verhältnis</small>
                                 </div>
@@ -73,14 +73,14 @@
                         {% endif %}
                         <div class="col-sm-3 col-6">
                             <div class="pie-wrapper text-center">
-                                <p class="h4 text-center">{{ function_count|first }}<small
+                                <p class="h4 text-center fw-bold">{{ function_count|first }}<small
                                         class="fw-small">.{{ function_count|slice:"3:" }}</small></p>
                                 <small>Funktionsumfang</small>
                             </div>
                         </div>
                         <div class="col-sm-3 col-6">
                             <div class="pie-wrapper text-center">
-                                <p class="h4 text-center">{{ platform.suitable_for.count }}</p>
+                                <p class="h4 text-center fw-bold">{{ platform.suitable_for.count }}</p>
                                 <small>Zielgruppen</small>
                             </div>
                         </div>

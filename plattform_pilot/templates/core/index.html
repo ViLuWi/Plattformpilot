@@ -42,7 +42,35 @@
             </form>
         </div>
     </div>
-    <div class="position-relative main__wrapper"></div>
+    <!-- ---------- main ---------- -->
+    <div class="position-relative main__wrapper">
+        <div class="container w-900 pt-5 px-md-3 px-4">
+            <h2>Wir stehen für Objektivität</h2>
+            <div class="row row-cols-sm-2 row-cols-1 g-1">
+                <div class="col">
+                    <p class="mt-4">
+                        Vergleichsportale stehen oft in Kritik, keine objektive Auflistung Ihrer Angebote zu geben. Die
+                        profitabelsten Angebote sind ganz oben...
+                        <br>
+                        Bei und ist es anders!
+                        <br>
+                        <br>
+                        Unser Alogythmus ist programmiert, um optimale Ergebnisse für Sie zu finden, weil uns
+                        Objektivität und Vertrauen wichtiger als Geld ist.
+                    </p>
+                </div>
+                <div class="col text-sm-end text-center">
+                    <img src="{% static 'images/core/analysis-user.png' %}" class="" height="300" id="img1"
+                         alt='analysis PNG Designed By SilviaNatalia from https://pngtree.com/' />
+                    <small id="fig1" class="d-none">
+                        analysis PNG Designed By SilviaNatalia from https://pngtree.com/
+                    </small>
+                </div>
+            </div>
+            <h2>Durch Umfragen zum Ziel</h2>
+
+        </div>
+    </div>
 {% endblock %}
 
 {% block custom-js %}
@@ -65,9 +93,9 @@
         });
 
         // random particles in start screen
-        const colors = ["var(--success)", "var(--warning)", "var(--danger)", "var(--dark)", 'var(--orange)'];
+        const colors = ["var(--success)", "var(--warning)", "var(--danger)", "var(--light)", 'var(--orange)'];
         const shapes = ['100%', '0%']
-        const numBalls = 30;
+        const numBalls = window.innerWidth / 30;
         const balls = [];
 
         for (let i = 0; i < numBalls; i++) {
@@ -82,7 +110,7 @@
             ball.style.height = ball.style.width;
             ball.style.borderRadius = shapes[Math.floor(Math.random() * shapes.length)]
 
-            function checkShape() {
+            function checkShape(ball) {
                 if (ball.style.borderRadius === '0%') {
                     ball.style.border = "4px solid " + colors[Math.floor(Math.random() * colors.length)];
                     ball.style.rotate = `${Math.floor(Math.random() * 30)}deg`
@@ -90,9 +118,10 @@
                     ball.style.background = colors[Math.floor(Math.random() * colors.length)];
                 }
             }
-            checkShape()
+
+            checkShape(ball)
             ball.addEventListener('click', () => {
-                checkShape()
+                checkShape(ball)
             })
 
             balls.push(ball);
@@ -121,5 +150,11 @@
             );
         });
 
+        // popper
+        const img1 = document.querySelector('#img1');
+        const fig1 = document.querySelector('#fig1');
+        img1.addEventListener('hover', () => {
+            fig1.classList.remove('d-none')
+        })
     </script>
 {% endblock %}
