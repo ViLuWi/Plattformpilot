@@ -11,11 +11,9 @@
     background-attachment: fixed;
 }
 
-.top__wrapper .top-bg-image svg {
-    position: absolute;
-    height: 100%;
-    left: -900px;
-    opacity: .3;
+.top__wrapper .top-bg-image {
+    width: 90vw;
+    margin: 0 auto;
 }
 
 .top__wrapper .top-content, .ui-menu {
@@ -25,6 +23,7 @@
 
 .top__wrapper h1 {
     top: -100px;
+    z-index: 5;
 }
 
 .top__wrapper #search {
@@ -58,6 +57,16 @@
     transition: .3s;
 }
 
+.ball {
+    position: absolute;
+    opacity: 0.4;
+}
+
+#form {
+    position: relative;
+    z-index: 2;
+}
+
 @media screen and (max-width: 768px) {
     .top__wrapper {
         border-bottom-left-radius: 45px;
@@ -68,9 +77,18 @@
         width: 100%;
     }
 
-    .top__wrapper .top-bg-image svg {
-        left: -1100px;
-    }
 }
 
 /* #/top wrapper */
+
+
+/* main wrapper */
+
+.main__wrapper {
+    z-index: 2;
+    height: 400px;
+    width: 100%;
+    background: var(--bg-color);
+}
+
+/* #/main wrapper */
