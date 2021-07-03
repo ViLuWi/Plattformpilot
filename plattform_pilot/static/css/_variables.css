@@ -10,6 +10,7 @@
     --danger: #A22A02;
     --dark: #00040A;
     --orange: #FD6F40;
+    --primary: #8FBAF3;
 }
 
 html, body {
@@ -53,6 +54,10 @@ input:focus, select:focus, textarea:focus, button {
     max-width: 915px !important;
     width: 100% !important;
     margin: 0 auto !important;
+}
+
+.mt-6 {
+    margin-top: 2em;
 }
 
 /* footer */

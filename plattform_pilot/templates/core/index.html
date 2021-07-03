@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{% static 'css/core/index.css' %}"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script>
+    <link rel="stylesheet" href="{% static 'aos/aos.min.css' %}"/>
 {% endblock %}
 
 {% block content %}
@@ -24,11 +25,16 @@
             {#            {% include '_includes/core/index-bg.svg' %}#}
         </div>
         <div class="position-absolute top-50 start-50 translate-middle top-content">
-            <h1 class="position-relative">Finden und vergleichen Sie didaktische Plattform innerhalb von Minuten.</h1>
+            <h1 class="position-relative" data-aos="zoom-out" data-aos-duration="500">
+                Finden und vergleichen Sie didaktische Plattform innerhalb von Minuten.
+            </h1>
             <form class="" id="form" method="GET">
-                <input type="text" name="search" id="search" class="form-control w-100" placeholder="KATEGORIE FINDEN">
-                <h6 class="mt-4">Beliebte Kategorien</h6>
-                <div class="d-inline">
+                <input type="text" name="search" id="search" class="form-control w-100" placeholder="KATEGORIE FINDEN"
+                       data-aos="zoom-out" data-aos-duration="500" data-aos-delay="100"
+                >
+                <h6 class="mt-4" data-aos="zoom-out" data-aos-duration="500" data-aos-delay="200">Beliebte
+                    Kategorien</h6>
+                <div class="d-inline" data-aos="zoom-out" data-aos-duration="500" data-aos-delay="400">
                     {% for category in categories|slice:4 %}
                         <a href="{% url 'core:platform_list' category.slug %}?is_free=on"
                            class="text-decoration-none text-dark">
@@ -45,35 +51,100 @@
     <!-- ---------- main ---------- -->
     <div class="position-relative main__wrapper">
         <div class="container w-900 pt-5 px-md-3 px-4">
-            <h2>Wir stehen für Objektivität</h2>
+            <h2 data-aos="zoom-out" data-aos-duration="500" data-aos-delay="100">
+                Wir stehen für Objektivität
+            </h2>
             <div class="row row-cols-sm-2 row-cols-1 g-1">
                 <div class="col">
-                    <p class="mt-4">
+                    <p class="mt-4" data-aos="zoom-out" data-aos-duration="500" data-aos-delay="100">
                         Vergleichsportale stehen oft in Kritik, keine objektive Auflistung Ihrer Angebote zu geben. Die
                         profitabelsten Angebote sind ganz oben...
                         <br>
-                        Bei und ist es anders!
+                        <b>Bei und ist es anders!</b>
                         <br>
                         <br>
                         Unser Alogythmus ist programmiert, um optimale Ergebnisse für Sie zu finden, weil uns
                         Objektivität und Vertrauen wichtiger als Geld ist.
                     </p>
                 </div>
-                <div class="col text-sm-end text-center">
+                <div class="col text-sm-end text-center" data-aos="zoom-out" data-aos-duration="500"
+                     data-aos-delay="300">
                     <img src="{% static 'images/core/analysis-user.png' %}" class="" height="300" id="img1"
-                         alt='analysis PNG Designed By SilviaNatalia from https://pngtree.com/' />
+                         alt='analysis PNG Designed By SilviaNatalia from https://pngtree.com/'/>
                     <small id="fig1" class="d-none">
                         analysis PNG Designed By SilviaNatalia from https://pngtree.com/
                     </small>
                 </div>
             </div>
-            <h2>Durch Umfragen zum Ziel</h2>
+            <div class="row row-cols-sm-2 row-cols-1 g-1 mt-5">
+                <div class="col text-sm-start text-center" data-aos="zoom-out" data-aos-duration="500"
+                     data-aos-delay="500">
+                    <img src="{% static 'images/core/survey.png' %}" class="" height="300" id="img2"
+                         alt='analysis PNG Designed By SilviaNatalia from https://pngtree.com/'/>
+                    <small id="fig2" class="d-none">
+                        analysis PNG Designed By SilviaNatalia from https://pngtree.com/
+                    </small>
+                </div>
+                <div class="col">
+                    <h2 data-aos="zoom-out" data-aos-duration="500" data-aos-delay="100">
+                        Durch Umfragen zum Ziel
+                    </h2>
+                    <p class="mt-4" data-aos="zoom-out" data-aos-duration="500" data-aos-delay="200">
+                        Durch eine Umfrage unter Experten und Pädagogen, wurden die wichtigsten Merkmale und Kritierien
+                        bei der Entwicklung dieses Vergleichsportals analysiert und Umgesetzt.
+                        <br>
+                        <br>
+                        Unsere Filterkriterien sind von Experten, für Sie optimal angepasst, um schnell die passende
+                        Plattform zu finden.
+                    </p>
+                </div>
+            </div>
+            <h2 data-aos="zoom-out" data-aos-duration="500" data-aos-delay="100" class="mt-6">
+                Wie wir Plattformen analysieren
+            </h2>
+            <div class="row row-cols-sm-4 row-cols-2 g-5 mt-5">
+                <div class="col" data-aos="zoom-out" data-aos-duration="200"
+                     data-aos-delay="100">
+                    {% include '_includes/icons/checklist.svg' %}
+                    <p class="mt-3">
+                        <b>Funktionsumfang</b>
+                        <br>
+                        ist essentiell bei der Wahl der passenden Plattform. Wir zeigen Ihnen welche Funktionen die Plattformen zu bieten haben.
 
+                    </p>
+                </div>
+                <div class="col" data-aos="zoom-out" data-aos-duration="300" data-aos-delay="300">
+                    {% include '_includes/icons/brush.svg' %}
+                    <p class="mt-3">
+                        <b>Aufbau & Design</b>
+                        <br>
+                        sollte einfach und schnell verständlich sein. Eine nicht benutzerfreundliche Plattform behindert Workflow und macht wenig Spaß.
+                    </p>
+                </div>
+                <div class="col" data-aos="zoom-out" data-aos-duration="300" data-aos-delay="400">
+                    {% include '_includes/icons/euro-dollar.svg' %}
+                    <p class="mt-3">
+                        <b>Preis-Leistungs-Verhältnis</b>
+                        <br>
+                        ist ausschlaggebend für eine potentielle Nutzung der Plattform. Wir vergleichen den Preis mit den angebotenen Leistungen und geben Antwort drauf!
+                    </p>
+                </div>
+                <div class="col" data-aos="zoom-out" data-aos-duration="300" data-aos-delay="500">
+                    {% include '_includes/icons/person-line.svg' %}
+                    <p class="mt-3">
+                        <b>Zielgruppe</b>
+                        <br>
+                        ... gehöre ich dazu? Um einem Eskimo kein Eis zu verkaufen, zeigen wir Ihnen, welche Zielgruppe die jeweilige Plattform anspricht.
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
+    <!-- ---------- #/main ---------- -->
 {% endblock %}
 
 {% block custom-js %}
+    <script src="{% static 'aos/aos.min.js' %}"></script>
     <script>
         $(function () {
             let availableTags = [
@@ -95,7 +166,10 @@
         // random particles in start screen
         const colors = ["var(--success)", "var(--warning)", "var(--danger)", "var(--light)", 'var(--orange)'];
         const shapes = ['100%', '0%']
-        const numBalls = window.innerWidth / 30;
+        let numBalls = window.innerWidth / 30;
+        if (window.innerWidth > 1300) {
+            numBalls = window.innerWidth / 40;
+        }
         const balls = [];
 
         for (let i = 0; i < numBalls; i++) {
@@ -113,7 +187,7 @@
             function checkShape(ball) {
                 if (ball.style.borderRadius === '0%') {
                     ball.style.border = "4px solid " + colors[Math.floor(Math.random() * colors.length)];
-                    ball.style.rotate = `${Math.floor(Math.random() * 30)}deg`
+                    ball.style.rotate = `${Math.floor(Math.random() * 45)}deg`
                 } else {
                     ball.style.background = colors[Math.floor(Math.random() * colors.length)];
                 }
@@ -150,11 +224,9 @@
             );
         });
 
-        // popper
-        const img1 = document.querySelector('#img1');
-        const fig1 = document.querySelector('#fig1');
-        img1.addEventListener('hover', () => {
-            fig1.classList.remove('d-none')
+        // Animate on scroll
+        AOS.init({
+            once: true
         })
     </script>
 {% endblock %}
