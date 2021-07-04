@@ -3,7 +3,7 @@ import time
 
 from django.db.models import Count
 from django.shortcuts import render, redirect
-
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from urllib.parse import unquote
 
 from django.urls import reverse
@@ -93,7 +93,7 @@ def platform_list(request, slug):
             # add accuracy
             accuracy.append({'id': platform.id, 'accuracy': int((1 - (noo / filter_interations)) * 100)})
         # add average rating to platforms
-        rating_list.append({'id': platform.id, 'rating': calc_rating(platform.id)},)
+        rating_list.append({'id': platform.id, 'rating': calc_rating(platform.id)}, )
 
     # check if category is active
     if category.is_active:
@@ -105,7 +105,7 @@ def platform_list(request, slug):
             'related_platforms': related_platforms,
             'accurary': accuracy,
             'sorting': str(sort_by),
-            'rating_list': rating_list
+            'rating_list': rating_list,
         })
     else:
         return render(request, 'error/category-inactive.html')
@@ -113,6 +113,7 @@ def platform_list(request, slug):
 
 def terms(request):
     return render(request, 'core/terms.html')
+
 
 def cookies(request):
     return render(request, 'core/cookies.html')

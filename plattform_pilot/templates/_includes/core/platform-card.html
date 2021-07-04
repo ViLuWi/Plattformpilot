@@ -1,5 +1,6 @@
 {% load stars %}
-<div class="row pt-0 mb-5 position-relative card-wrapper {% if platform.is_featured %} is_featured-border{% endif %}">
+<div class="row pt-0 mb-5 position-relative card-wrapper infinite-item {% if platform.is_featured %} is_featured-border{% endif %}"
+     data-aos="zoom-out" data-aos-duration="300" data-aos-delay="1{{ forloop.counter|slice:1 }}0">
     <a href="{% url 'platform:platform_detail' platform.slug %}" class="text-decoration-none text-dark">
         {% if accuracy_fit %}
             <div class="card__accuracy badge text-dark border-success {% if platform.is_featured %}border-danger {% endif %}">
@@ -30,7 +31,7 @@
         {% endif %}
         <div class="col-sm-3 bg-light pt-3 brand__wrapper">
             <div class="d-sm-block d-flex">
-                <img src="{{ platform.thumbnail.url }}" width="75" class=""/>
+                <img src="{{ platform.thumbnail.url }}" width="75" class="" loading="lazy"/>
                 <div class="ms-sm-0 ms-2">
                     <h4 class="mt-sm-2 mb-0">{{ platform.name }}</h4>
                     <a href="{{ platform.link }}"

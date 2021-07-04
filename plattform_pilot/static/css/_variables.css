@@ -60,6 +60,10 @@ input:focus, select:focus, textarea:focus, button {
 .mt-6 {
     margin-top: 2em;
 }
+.btn-success {
+    background: var(--success);
+    background-color: var(--success);
+}
 
 /* footer */
 

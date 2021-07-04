@@ -1,4 +1,7 @@
 /* card design */
+.pb-6 {
+    padding-bottom: 2em;
+}
 /* badge pill design */
 .card__accuracy {
     width: 85px;
@@ -329,11 +332,12 @@ li input[type=checkbox][disabled] + .checkmark .check:after {
     #filter_area {
         position: absolute;
         left: -105%;
-        top: 11vh;
+        top: 10vh;
         width: 90%;
-        max-height: 90vh;
+        max-height: 95vh;
         margin: -50px auto;
         z-index: 9;
+        padding-bottom: 2em !important;
     }
 
     #filter_area.show {
