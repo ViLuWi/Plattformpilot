@@ -99,12 +99,40 @@
 }
 
 #tooltip {
-  /* ... */
-  display: none;
+    /* ... */
+    display: none;
 }
 
 #tooltip[data-show] {
-  display: block;
+    display: block;
+}
+
+.border-dotted {
+    width: calc(100% + 10px);
+    position: relative;
+    left: -5px;
+    height: auto;
+    background: var(--gray);
+    color: var(--bg-color);
+}
+.border-dotted svg {
+    fill: var(--light);
+}
+.border-dotted .col:nth-child(1):hover svg {
+    fill: var(--success);
+    transition: .5s;
+}
+.border-dotted .col:nth-child(2):hover svg {
+    fill: var(--orange);
+    transition: .5s;
+}
+.border-dotted .col:nth-child(3):hover svg {
+    fill: var(--primary);
+    transition: .5s;
+}
+.border-dotted .col:nth-child(4):hover svg {
+    fill: var(--warning);
+    transition: .5s;
 }
 
 /* #/main wrapper */
