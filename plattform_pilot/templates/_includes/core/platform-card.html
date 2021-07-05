@@ -43,17 +43,16 @@
         <div class="col-sm-5 mt-sm-0 mt-3 pt-3">
             <ul class="list-group">
                 {% if platform.tested %}
-                    <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i><b>Von uns
+                    <li class="list-group-item">{% include '_includes/icons/check-circle.svg' %}<b>Von uns
                         getestet</b></li>
                 {% endif %}
                 {% for func in platform.functionality.all %}
                     {% if forloop.counter < 5 and platform.tested %}
-                        <li class="list-group-item"><i
-                                class="bi bi-check-circle-fill text-success me-2"></i>{{ func }} {{ func.id }}
+                        <li class="list-group-item">{% include '_includes/icons/check-circle.svg' %}{{ func }}
                         </li>
                     {% elif forloop.counter < 6 and not platform.tested %}
-                        <li class="list-group-item"><i
-                                class="bi bi-check-circle-fill text-success me-2"></i>{{ func }} {{ func.id }}
+                        <li class="list-group-item">
+                            {% include '_includes/icons/check-circle.svg' %}{{ func }}
                         </li>
                     {% endif %}
                 {% endfor %}
@@ -73,7 +72,7 @@
                 <a href="{% url 'platform:platform_detail' platform.slug %}"
                    class="text-danger btn my-2 pe-0 d-sm-inline d-none">
                     Mehr Erfahren
-                    <i class="bi bi-chevron-right"></i>
+                    {% include '_includes/icons/chevron-right.svg' %}
                 </a>
                 <div class="d-sm-inline d-flex">
                     <div class="ms-auto text-end order-1">
@@ -82,14 +81,16 @@
                             <small>{{ platform.pricing_note }}</small>
                         {% else %}
                             <p class="h5 mb-0">Gratis</p>
-                            <small><i class="bi bi-exclamation-circle"></i> {{ platform.pricing_note }}</small>
+                            <small>
+                                {% include '_includes/icons/exclamation.svg' %}
+                                {{ platform.pricing_note }}</small>
                         {% endif %}
                     </div>
                     <p class="ms-ms-0 ms-3">
                         {% if platform.is_free %}
-                            <i class="bi bi-check-all text-success"></i>
+                            {% include '_includes/icons/check-circle.svg' %}
                         {% else %}
-                            <i class="bi bi-x-circle-fill text-danger"></i>
+                            {% include '_includes/icons/x-circle.svg' %}
                         {% endif %}
                         Kostenlose Variante
                     </p>
@@ -97,13 +98,13 @@
             </div>
         </div>
         <div class="d-flex justify-content-center">
-            <small class="text-secondary">
+            <small class="text-secondary star-rating">
                 {% for x in rating_list %}
                     {% if platform.id == x.id %}
                         {% if x.rating > 0 %}
-                            <span>{{ x.rating|stars_half|safe }} ({{ x.rating|floatformat:1 }})</span>
+                            <span>{{ x.rating|stars_half|safe }}</span> ({{ x.rating|floatformat:1 }})
                         {% else %}
-                            <span>Keine Bewertung</span>
+                            Keine Bewertung
                         {% endif %}
                     {% endif %}
                 {% endfor %}

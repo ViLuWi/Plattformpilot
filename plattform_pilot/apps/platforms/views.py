@@ -13,10 +13,6 @@ from apps.reviews.forms import ReviewForm
 from apps.reviews.models import Review
 
 
-def all_plattforms(request):
-    pass
-
-
 def platform_detail(request, slug):
     platform = Platform.objects.get(slug=slug)
     category = Category.objects.get(category=platform.category)

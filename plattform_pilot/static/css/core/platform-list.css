@@ -2,6 +2,11 @@
 .pb-6 {
     padding-bottom: 2em;
 }
+
+.submit__wrapper {
+    padding-bottom: 0px;
+}
+
 /* badge pill design */
 .card__accuracy {
     width: 85px;
@@ -73,10 +78,14 @@
         z-index: 5;
     }
 
-.card-wrapper .card__accuracy .text-recommended:after {
-    content: "Empfeh-"'\A'" lung";
-    white-space: pre;
-}
+    .card-wrapper .card__accuracy .text-recommended:after {
+        content: "Empfeh-" '\A' " lung";
+        white-space: pre;
+    }
+
+    .submit__wrapper {
+        padding-bottom: 3em;
+    }
 }
 
 @media screen and (max-width: 350px) {
@@ -110,11 +119,22 @@
     outline: none;
 }
 
+.star-rating span {
+    color: var(--orange);
+}
+
 /* /card design */
 
 
 /*!* Create a custom checkbox *!*/
-
+input[name="cookies"] {
+    position: relative !important;
+    top: -18px;
+    display: flex;
+    opacity: 1 !important;
+    width: auto !important;
+    height: auto !important;
+}
 
 /* custom checkbox */
 label {

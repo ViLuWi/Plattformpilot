@@ -29,20 +29,22 @@
 <!----------- Footer ------------>
 <footer class="container mt-6 pt-5 pb-3 w-900">
     <div class="row mt-6">
-        <div class="col-md-5 col-sm-6 col-12">
+        <div class="col-sm-5 col-12">
             <h2>Plattformpilot</h2>
             <h5>Die passende Plattformen für Ihr nächstes Vorhaben finden.</h5>
         </div>
-        <div class="col-md-4 col-sm-6 col-12">
+        <div class="col-sm-4 col-12">
+        <hr class="d-sm-none d-block w-50">
             <h5>Plattformen</h5>
-            <a href="#">Alle Plattformen</a>
+            <a href="{% url 'core:all_categories' %}">Alle Plattformen</a>
 {#            <hr class="w-50">#}
 {#            <a href="#">Ich bin Produktanbieter</a>#}
 {#            <br>#}
 {#            <a href="#">Ich will mein Produkt listen</a>#}
 
         </div>
-        <div class="col-md-3 col-sm-6 col-12">
+        <div class="col-sm-3 col-12">
+        <hr class="d-sm-none d-block w-50">
             <h5>Unternehmen</h5>
             <a href="#">Über uns</a>
             <br>
@@ -55,7 +57,6 @@
             <a href="{% url 'core:cookies' %}">Cookie Richtlinien</a>
             <br>
         </div>
-        <div class="col-md-3 col-sm-6 col-12"></div>
     </div>
 </footer>
 <!------- #/Footer -------->
@@ -81,15 +82,15 @@
             <div class="d-none" id="cookie-collapse">
                 <div class="">
                     <label for="necessary">Notwendig</label>
-                    <input type="checkbox" id="necessary" checked disabled>
+                    <input type="checkbox" id="necessary" name="cookies" checked disabled>
                 </div>
                 <div class="">
                     <label for="tracking">Tracking</label>
-                    <input type="checkbox" id="tracking">
+                    <input type="checkbox" id="tracking" name="cookies">
                 </div>
                 <div class="">
                     <label for="marketing">Marketing</label>
-                    <input type="checkbox" id="marketing">
+                    <input type="checkbox" id="marketing" name="cookies">
                 </div>
                 <button type="button" onclick="countCookieLawNumber('custom')"
                         class="btn rounded-0 px-0">

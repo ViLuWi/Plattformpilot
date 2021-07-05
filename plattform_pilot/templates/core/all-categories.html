@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block meta_description %}
+
+{% endblock %}
+
+{% block meta_robots %}
+
+{% endblock %}
+
+{% block custom-css %}
+<style>
+.categories__wrapper {
+    min-height: 70vh;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+    {% include '_includes/base/navbar.html' %}
+
+    <div class="container pt-5 w-900 categories__wrapper">
+    <h1>Alle Kategorien <span class="h5">({{ categories.all.count }})</span></h1>
+        <ul class="list-group list-group-flush mt-6">
+            {% for category in categories %}
+                <li class="list-group-item bg-transparent">
+                    <a href="{% url 'core:platform_list' category.slug %}">{{ category }}</a>
+                </li>
+            {% endfor %}
+
+        </ul>
+    </div>
+
+{% endblock %}

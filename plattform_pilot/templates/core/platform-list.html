@@ -51,10 +51,12 @@
                         </div>
                         <h5>Geeignet für</h5>
                         {{ filter.form.suitable_for }}
-                        <button type="submit" class="btn btn-success w-100 rounded-0">Filtern</button>
-                        <br>
-                        <a href="{% url 'core:platform_list' category.slug %}?is_free=on"
-                           class="text-decoration-none text-primary">Filter zurücksetzen</a>
+                        <div class="submit__wrapper">
+                            <button type="submit" class="btn btn-success w-100 rounded-0">Filtern</button>
+                            <br>
+                            <a href="{% url 'core:platform_list' category.slug %}?is_free=on"
+                               class="text-decoration-none text-primary">Filter zurücksetzen</a>
+                        </div>
                     </div>
                     <div class="mt-5 card-wrapper card-wrapper-fix d-lg-block d-none">
                         <h5>Ähnliche Kategorien</h5>
@@ -187,9 +189,7 @@
         // select sorted value in sort_by
         const sort_by_input = document.getElementById('sort_by')
         let sort_by = document.getElementById('sorting').innerText;
-        console.log(sort_by)
-        for (let i = 0; i < 4; i++) {
-            console.log(sort_by_input.options[i].value.toString())
+        for (let i = 0; i < 5; i++) {
             if (sort_by.toString() === sort_by_input.options[i].value.toString()) {
                 sort_by_input.options[i].selected = true
             }
