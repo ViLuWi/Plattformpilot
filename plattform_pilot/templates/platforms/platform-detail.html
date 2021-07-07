@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static embed_video_tags %}
+{% load static embed_video_tags stars %}
 {% block meta_description %}
     {{ platform.short_description|safe|truncatewords:50 }}
 {% endblock %}
@@ -7,6 +7,7 @@
     {{ platform.name }} im Test - Alles was Sie wissen müssen | XYZ
 {% endblock %}
 {% block custom-css %}
+    <link rel="stylesheet" href="{% static 'aos/aos.min.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/platforms/platform-detail.css' %}"/>
 {% endblock %}
 {% block content %}
@@ -46,13 +47,20 @@
                 </div>
             </div>
             <div class="container-md pt-5 container-custom">
-                <h1><img src="{{ platform.thumbnail.url }}" width="50" class="me-3"/>{{ platform.name }}</h1>
-                <small>rating here</small>
-                <p>Kategorie - {{ platform.category.category }}</p>
+                <h1 data-aos="fade-right" data-aos-duration="600">
+                    <img src="{{ platform.thumbnail.url }}" width="50" class="me-3"/>
+                    {{ platform.name }}
+                </h1>
+                <small data-aos="fade-right" data-aos-duration="600" data-aos-delay="300">
+                    <span class="stars">{{ av_rating|stars_half|safe }}</span> ({{ av_rating }})
+                </small>
+                <p data-aos="fade-right" data-aos-duration="600" data-aos-delay="100">
+                    Kategorie - {{ platform.category.category }}
+                </p>
                 <div class="mt-5 mx-auto py-5">
                     <div class="row row-cols-sm-4 row-col-2 g-sm-2 g-4 rating__wrapper">
                         {% if platform.design_rating %}
-                            <div class="col-sm-3 col-6">
+                            <div class="col-sm-3 col-6" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="400">
                                 <div class="pie-wrapper text-center">
                                     <p class="h4 text-center fw-bold">{{ platform.design_rating|first }}<small
                                             class="fw-small">.{{ platform.design_rating|slice:"2:" }}</small></p>
@@ -63,7 +71,7 @@
                             <div class="col-sm-3 col-0"></div>
                         {% endif %}
                         {% if platform.price_rating %}
-                            <div class="col-sm-3 col-6">
+                            <div class="col-sm-3 col-6" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="450">
                                 <div class="pie-wrapper text-center">
                                     <p class="h4 text-center fw-bold">{{ platform.price_rating|first }}<small
                                             class="fw-small">.{{ platform.price_rating|slice:"2:" }}</small></p>
@@ -71,14 +79,14 @@
                                 </div>
                             </div>
                         {% endif %}
-                        <div class="col-sm-3 col-6">
+                        <div class="col-sm-3 col-6" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="500">
                             <div class="pie-wrapper text-center">
                                 <p class="h4 text-center fw-bold">{{ function_count|first }}<small
                                         class="fw-small">.{{ function_count|slice:"3:" }}</small></p>
                                 <small>Funktionsumfang</small>
                             </div>
                         </div>
-                        <div class="col-sm-3 col-6">
+                        <div class="col-sm-3 col-6" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="550">
                             <div class="pie-wrapper text-center">
                                 <p class="h4 text-center fw-bold">{{ platform.suitable_for.count }}</p>
                                 <small>Zielgruppen</small>
@@ -89,32 +97,34 @@
             </div>
         </div>
         <!-- Navbar -->
-        <div class="container w-900">
-            <div class="scrollspy-nav position-absolute py-2 ps-0">
-                <a data-target="overview__wrapper" class="scrollspy-link">Übersicht</a>
-                <a data-target="pricing__wrapper" class="scrollspy-link">Kosten</a>
-                <a data-target="functions_wrapper" class="scrollspy-link">Funktionen</a>
-                <a data-target="rating__wrapper" class="scrollspy-link">Bewertung</a>
-                <span class="scrollspy-indicator"></span>
+        <div class="container" data-aos="fade-right" data-aos-duration="600" data-aos-delay="400">
+            <div class="w-900">
+                <div class="scrollspy-nav position-absolute py-2 ps-0">
+                    <a data-target="overview__wrapper" class="scrollspy-link">Übersicht</a>
+                    <a data-target="pricing__wrapper" class="scrollspy-link">Kosten</a>
+                    <a data-target="functions_wrapper" class="scrollspy-link">Funktionen</a>
+                    <a data-target="rating__wrapper" class="scrollspy-link">Bewertung</a>
+                    <span class="scrollspy-indicator"></span>
+                </div>
             </div>
         </div>
-        <!-- /Navbar -->
+        <!-- #/Navbar -->
         <div class="container container-custom">
             <div id="overview__wrapper" class="row row-cols-sm-2 row-cols-1 gx-5 gy-5 scrollspy-section mt-5">
-                <div class="col">
+                <div class="col" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="400">
                     <h3 class="mb-3">Was ist {{ platform.name }}?</h3>
                     {{ platform.short_description|safe }}
                 </div>
                 {% if platform.image_detail %}
-                    <div class="col">
+                    <div class="col" data-aos="zoom-in" data-aos-duration="400" data-aos-delay="550">
                         <img src="{{ platform.image_detail.url }}" class="img-fluid mt-0"/>
                     </div>
                 {% endif %}
-                <div class="col">
+                <div class="col" data-aos="zoom-in" data-aos-duration="400" data-aos-delay="150">
                     <h3 class="mb-3">Wer benutzt {{ platform.name }}?</h3>
                     {{ platform.who_use_it|safe }}
                 </div>
-                <div class="col">
+                <div class="col" data-aos="zoom-in" data-aos-duration="400" data-aos-delay="250">
                     <h3 class="mb-3">Für wen ist {{ platform.name }} geeignet?</h3>
                     <ul class="list-group list-group-flush mb-2">
                         {% for suitable in platform.suitable_for.all %}
@@ -126,21 +136,21 @@
                     </ul>
                     {{ platform.when_to_use|safe }}
                 </div>
-                <div class="col">
+                <div class="col" data-aos="zoom-in" data-aos-duration="400" data-aos-delay="150">
                     <h3 class="mb-3">Wie benutzte ich {{ platform.name }}?</h3>
                     {% if platform.tutorial %}
                         {{ platform.tutorial|safe }}
                     {% endif %}
                 </div>
                 {% if platform.tutorial_video %}
-                    <div class="col">
+                    <div class="col" data-aos="zoom-in" data-aos-duration="400" data-aos-delay="250">
                         <p class="mt-md-5 mt-0">Videoanleitung zur Nutzung von {{ platform.name }}</p>
                         {% video platform.tutorial_video '100% x 300px' %}
                     </div>
                 {% endif %}
             </div>
             <div class="row row-cols-1 g-5 mt-5 px-4">
-                <div class="scrollspy-section col" id="pricing__wrapper">
+                <div class="scrollspy-section col" id="pricing__wrapper" data-aos="zoom-in" data-aos-duration="400" data-aos-delay="150">
                     <h3 class="mb-3">Wieviel kostet {{ platform.name }}?</h3>
                     <div>
                         <div class="d-flex justify-content-between pe-2">
@@ -175,7 +185,7 @@
                             </thead>
                             <tbody>
                             {% for f in all_functions %}
-                                <tr>
+                                <tr data-aos="fade-right" data-aos-duration="400" data-aos-delay="50">
                                     <td>{{ forloop.counter }}</td>
                                     <td class="{% if f in platform.functionality.all %}fw-bold {% endif %}">
                                         {{ f }}
@@ -189,6 +199,11 @@
                                     </td>
                                 </tr>
                             {% endfor %}
+                            <tfoot data-aos="fade-right" data-aos-duration="400" data-aos-delay="50">
+                            <td>#</td>
+                            <th>Insgesamt</th>
+                            <th>{{ functionality_count }} / {{ category_filter_count }}</th>
+                            </tfoot>
                             </tbody>
                         </table>
                     </div>
@@ -216,5 +231,6 @@
 {% endblock %}
 
 {% block custom-js %}
+    <script src="{% static 'aos/aos.min.js' %}"></script>
     <script src="{% static 'js/platforms/platform-detail.js' %}"></script>
 {% endblock %}

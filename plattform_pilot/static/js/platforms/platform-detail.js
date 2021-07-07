@@ -17,7 +17,7 @@ const scrollspy = () => {
     const pageYPosition = document.documentElement.scrollTop || document.body.scrollTop;
     sections.forEach((section) => {
         const sectionYPosition = section.offsetTop;
-        if (pageYPosition > sectionYPosition - 60) {
+        if (pageYPosition > sectionYPosition - 100) {
             links.forEach((link) => {
                 if (link.dataset.target === section.id) {
                     indicator.style.left = `${link.offsetLeft}px`;
@@ -59,3 +59,9 @@ let check_rating = () => {
         }
     }
 }
+
+
+// Animate on scroll
+AOS.init({
+    once: true
+})

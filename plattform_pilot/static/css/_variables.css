@@ -49,6 +49,8 @@ a:hover {
 input:focus, select:focus, textarea:focus, button {
     box-shadow: none !important;
     border: 1px solid var(--orange);
+    -webkit-appearance: none;
+    -webkit-box-shadow: none !important;
 }
 
 .w-900 {

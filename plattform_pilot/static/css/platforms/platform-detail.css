@@ -25,6 +25,11 @@
     margin: 0px 5px;
 }
 
+/* stars */
+.stars {
+    color: var(--orange);
+}
+
 /* pie diagram and subnav */
 .fw-small {
     font-size: 16px;

@@ -30,7 +30,7 @@ def stars_half(value):
     elif value >= 4 and value < 4.5:
         return '&#9733;&#9733;&#9733;&#9733;'
     elif value >= 4.5 and value < 5:
-        return '&#9733;&#9733;&#9733;&#9734;'
+        return '&#9733;&#9733;&#9733;&#9733;&#9734;'
     elif value >= 5:
         return '&#9733;&#9733;&#9733;&#9733;&#9733;'
 

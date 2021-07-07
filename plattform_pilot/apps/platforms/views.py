@@ -16,7 +16,9 @@ from apps.reviews.models import Review
 def platform_detail(request, slug):
     platform = Platform.objects.get(slug=slug)
     category = Category.objects.get(category=platform.category)
-    function_count = round(platform.functionality.count() * 10 / category.filter_functions.count(), 2)
+    functionality_count = platform.functionality.count()
+    category_filter_count = category.filter_functions.count()
+    function_count = round(functionality_count * 10 / category_filter_count, 2)
     function_count = str(function_count)
     all_functions = category.filter_functions.all().order_by('functionality')
 
@@ -49,4 +51,6 @@ def platform_detail(request, slug):
         'form': form,
         'reviews': reviews,
         'av_rating': av_rating,
+        'functionality_count': functionality_count,
+        'category_filter_count': category_filter_count
     })
