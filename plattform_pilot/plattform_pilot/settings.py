@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'apps.reviews',
     'django_filters',
     'embed_video',
+    'tinymce',
 ]
 
 MIDDLEWARE = [

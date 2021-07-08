@@ -24,6 +24,8 @@ urlpatterns = [
     path('', include('apps.core.urls')),
     path('plattform/', include('apps.platforms.urls')),
     path('rezessionen/', include('apps.reviews.urls')),
+    # wysiwyg editor
+    path('tinymce/', include('tinymce.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

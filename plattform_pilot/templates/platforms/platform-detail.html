@@ -52,7 +52,7 @@
                     {{ platform.name }}
                 </h1>
                 <small data-aos="fade-right" data-aos-duration="600" data-aos-delay="300">
-                    <span class="stars">{{ av_rating|stars_half|safe }}</span> ({{ av_rating }})
+                    <span class="stars">{{ av_rating|stars_half|safe }}</span> ({{ av_rating|floatformat:1 }})
                 </small>
                 <p data-aos="fade-right" data-aos-duration="600" data-aos-delay="100">
                     Kategorie - {{ platform.category.category }}
