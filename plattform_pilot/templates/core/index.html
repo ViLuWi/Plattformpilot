@@ -41,7 +41,7 @@
                             {{ category.category }} -
                         </a>
                         {% if forloop.last %}
-                            Alle Kategorien
+                            <a href="{% url 'core:all_categories' %}">Alle Kategorien</a>
                         {% endif %}
                     {% endfor %}
                 </div>

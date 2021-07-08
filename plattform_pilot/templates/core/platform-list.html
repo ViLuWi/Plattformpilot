@@ -10,7 +10,22 @@
 
     <div class="container-lg mt-5 px-lg-auto px-4">
         <div class="mb-3">
-            <h1 class="h2">{{ category|capfirst }}</h1>
+            <div class="title d-flex position-relative">
+                <h1 class="h2 me-2">
+                    {{ category|capfirst }}
+                </h1>
+                <details data-popover="right">
+                    <summary>
+                        {% include '_includes/icons/info-circle.svg' %}
+                    </summary>
+                    <div class="title-description p-3">
+                    <div class="cube"></div>
+                        {% if category.description %}
+                            {{ category.description|safe }}
+                        {% endif %}
+                    </div>
+                </details>
+            </div>
             <a href="{% url 'core:index' %}" class="text-decoration-none">
                 {% include '_includes/icons/chevron-double-left.svg' %}
                 Kategorie ändern</a>
@@ -70,7 +85,7 @@
                 <div class="col-lg-8 col-12 p-lg-0 p-3 pt-0 offset-lg-1">
                     <!-- Sorting -->
                     <div class="card-wrapper card-wrapper-fix mb-5 d-flex justify-content-between">
-                        <p class="my-auto">Treffer: <b>{{ filter.qs.count }}</b></p>
+                        <p class="my-auto">Top Treffer: <b>{{ filter.qs.count }}</b></p>
                         <div class="d-sm-flex d-none">
                             <p class="my-auto">Insgesamt: <b id="amount_products">{{ filter.qs.count }}</b></p>
                         </div>

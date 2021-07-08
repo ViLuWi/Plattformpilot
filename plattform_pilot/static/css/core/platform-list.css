@@ -7,6 +7,87 @@
     padding-bottom: 0px;
 }
 
+details[data-popover] > summary:focus {
+    outline: none;
+}
+
+details[data-popover] > summary::-webkit-details-marker {
+    display: none;
+}
+
+details[data-popover] > summary {
+    list-style: none;
+}
+
+.title-description {
+    position: absolute;
+    left: 370px;
+    top: 0px;
+    max-width: 990px;
+    background: var(--light);
+    z-index: 8;
+    border: 5px solid var(--dark);
+}
+
+.title-description:before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-right: 10px dashed var(--dark);
+    border-top: 10px dashed var(--dark);
+    border-bottom: 10px solid transparent;
+    left: -21px;
+    top: 6px;
+}
+
+.title-description:after {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 7px solid transparent;
+    border-right: 7px solid #fff;
+    border-top: 7px solid #fff;
+    border-bottom: 7px solid transparent;
+    left: -11px;
+    top: 10px;
+}
+
+@media screen and (max-width: 992px) {
+    .title-description {
+        left: 0px;
+        top: 75px;
+    }
+
+    .title-description:before {
+        content: "";
+        width: 0px;
+        height: 0px;
+        position: absolute;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid var(--dark);
+        left: calc(220px + 8%);
+        top: -23px;
+    }
+
+    .title-description:after {
+        content: "";
+        width: 0px;
+        height: 0px;
+        position: absolute;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid #fff;
+        left: calc(220px + 8%);
+        top: -18px;
+    }
+}
+
 /* badge pill design */
 .card__accuracy {
     width: 85px;
@@ -110,6 +191,7 @@
     max-width: 130px;
     border: none;
     border-bottom: 1px solid black;
+    border-radius: 0;
     background: transparent;
 }
 
@@ -145,6 +227,7 @@ label {
     -ms-user-select: none;
     user-select: none;
     left: 20px;
+    cursor: pointer;
 }
 
 #form label:hover {
