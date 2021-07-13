@@ -18,8 +18,13 @@ def platform_detail(request, slug):
     category = Category.objects.get(category=platform.category)
     functionality_count = platform.functionality.count()
     category_filter_count = category.filter_functions.count()
-    function_count = round(functionality_count * 10 / category_filter_count, 2)
-    function_count = str(function_count)
+    # calculate functionality
+    function_count = round(functionality_count * 10 / category_filter_count, 1)
+    if function_count > 9.9:
+        function_count = str(10.0)
+    else:
+        function_count = str(function_count)
+    print(function_count)
     all_functions = category.filter_functions.all().order_by('functionality')
 
     # review

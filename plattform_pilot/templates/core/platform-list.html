@@ -19,7 +19,7 @@
                         {% include '_includes/icons/info-circle.svg' %}
                     </summary>
                     <div class="title-description p-3">
-                    <div class="cube"></div>
+                        <div class="cube"></div>
                         {% if category.description %}
                             {{ category.description|safe }}
                         {% endif %}
@@ -116,6 +116,16 @@
                             {% include '_includes/core/platform-card.html' %}
                         {% endwith %}
                     {% endfor %}
+                    {% if related_platforms.count < 1 and filter.qs.count < 1 %}
+                        <p class="text-center">
+                        <span class="h3">Uuups...</span>
+                            <br>
+                            <br>
+                            Sieht so aus, als gibt es noch keine Plattformen. Wir fügen bereits Plattformen hinzu!
+                            <br>
+                            Gibt und noch etwas Zeit.
+                        </p>
+                    {% endif %}
                     <!-- /Related Platforms -->
                 </div>
             </div>

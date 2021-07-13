@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static embed_video_tags stars %}
 {% block meta_description %}
-    {{ platform.short_description|safe|truncatewords:50 }}
+    {{ platform.who_use_it|safe }}
 {% endblock %}
 {% block title %}
     {{ platform.name }} im Test - Alles was Sie wissen müssen | XYZ
@@ -86,7 +86,7 @@
                         <div class="col-sm-3 col-6" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="500">
                             <div class="pie-wrapper text-center">
                                 <p class="h4 text-center fw-bold">{{ function_count|first }}<small
-                                        class="fw-small">.{{ function_count|slice:"3:" }}</small></p>
+                                        class="fw-small">.{{ function_count|slice:"2:" }}</small></p>
                                 <small>Funktionsumfang</small>
                             </div>
                         </div>
@@ -121,7 +121,7 @@
                 </div>
                 {% if platform.image_detail %}
                     <div class="col" data-aos="zoom-in" data-aos-duration="400" data-aos-delay="550">
-                        <img src="{{ platform.image_detail.url }}" class="img-fluid mt-0"/>
+                        <img src="{{ platform.image_detail.url }}" class="img-fluid mt-0" style="max-height: 350px;"/>
                     </div>
                 {% endif %}
                 {% if platform.who_use_it %}
