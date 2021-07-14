@@ -27,7 +27,7 @@ SECRET_KEY = env('SECURITY_KEY', default='unsafe-secret-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['plattformpilot.de', '195.20.241.115']
 ROOT_URLCONF = 'wilder_vgp.urls'
 
 

@@ -28,3 +28,6 @@ tests/coverage_html/
 tests/.coverage
 build/
 tests/report/
+
+#settings.py
+plattform_pilot/plattform_pilot/settings.py
