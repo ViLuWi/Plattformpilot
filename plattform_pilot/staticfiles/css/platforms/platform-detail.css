@@ -1,0 +1,127 @@
+.wrapper {
+    overflow-x: hidden;
+}
+
+/* background image */
+.img__background {
+    background-image: url("../../images/platforms/detail-placeholder.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: -200px;
+}
+
+/* breadcrumb */
+.breadcrumb-item a {
+    text-decoration: none;
+    color: var(--bs-primary);
+}
+
+.breadcrumb-item.active {
+    color: var(--bs-muted);
+}
+
+.breadcrumb-divider svg {
+    width: 10px;
+    margin: 0px 5px;
+}
+
+/* stars */
+.stars {
+    color: var(--orange);
+}
+
+/* pie diagram and subnav */
+.fw-small {
+    font-size: 16px;
+}
+
+.rating__wrapper, .container-custom {
+    max-width: 990px;
+    margin: 0 auto;
+}
+
+.scrollspy-nav {
+    background-color: var(--bg-color);
+    z-index: 5;
+    transition: .5s;
+}
+
+.scrollspy-nav .scrollspy-link {
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--bs-dark);
+    font-weight: bold;
+    margin-right: 25px;
+    transition: .5s;
+}
+
+.scrollspy-indicator {
+    position: absolute;
+    height: 3px;
+    width: 0;
+    background: var(--danger);
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s, left 0.1s;
+}
+
+.scrollspy-section {
+    margin: 0 4px;
+}
+
+.fix-scrollspy {
+    position: fixed !important;
+    top: 0px;
+    transition: .5s;
+    width: 970px;
+}
+
+.fix-scrollspy .scrollspy-link {
+    margin-right: 15px;
+    transition: .5s;
+}
+
+@media screen and (max-width: 575px) {
+    .fix-scrollspy .scrollspy-link {
+        margin-right: 0px;
+        transition: .5s;
+    }
+
+    .scrollspy-nav .scrollspy-link {
+        margin-right: 5px;
+    }
+}
+
+/* star rating */
+input[type="radio"] {
+    display: none;
+}
+
+.star-label {
+    color: var(--dark);
+    font-size: 25px;
+}
+
+.clasificacion {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+}
+
+.star-label:hover,
+.star-label:hover ~ .star-label {
+    color: var(--orange);
+    cursor: pointer;
+}
+
+input[type="radio"]:checked ~ .star-label {
+    color: var(--orange);
+}
+
+textarea {
+    width: 100%;
+}
+
+.star-rating {
+    color: var(--orange);
+}
+/* /#star rating */

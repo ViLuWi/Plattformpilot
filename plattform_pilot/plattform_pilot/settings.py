@@ -25,7 +25,7 @@ env.read_env()
 SECRET_KEY = env('SECURITY_KEY', default='unsafe-secret-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 ROOT_URLCONF = 'wilder_vgp.urls'
@@ -85,8 +85,12 @@ WSGI_APPLICATION = 'plattform_pilot.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'ppdb',
+        'USER': env('USERNAME'),
+        'PASSWORD': env('USERPASSWORD'),
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -127,8 +131,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/staticfiles/'
 STATICFILES_DIRS = [BASE_DIR / 'static',]
+STATIC_ROOT = BASE_DIR / 'staticfiles/'
 
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'

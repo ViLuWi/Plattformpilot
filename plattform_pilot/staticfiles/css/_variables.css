@@ -1,0 +1,111 @@
+/* overwrite Bootstrap default components */
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap');
+
+:root {
+    --bg-color: #f2f5fa;
+    --light: #fbfcfd;
+    --success: #02A340;
+    --warning: #F2DD03;
+    --danger: #A22A02;
+    --dark: #00040A;
+    --orange: #FD6F40;
+    --primary: #8FBAF3;
+    --gray: #2F3948;
+}
+
+html, body {
+    overflow-x: hidden;
+    touch-action: cross-slide-x;
+    -ms-touch-action: cross-slide-x;
+}
+
+body {
+    background: var(--bg-color);
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+}
+
+a {
+    text-decoration: none;
+    color: var(--danger);
+    transition: .3s;
+}
+
+a:hover {
+    color: var(--dark);
+    transition: .3s;
+}
+
+.bg-light {
+    background: var(--light) !important;
+    background-color: var(--light) !important;
+}
+
+input[type="text"]:focus,input[type="number"]:focus, select:focus, textarea:focus, button {
+    box-shadow: none !important;
+    border: 1px solid var(--orange);
+    -webkit-appearance: none;
+    -webkit-box-shadow: none !important;
+}
+
+.w-900 {
+    max-width: 915px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+}
+
+.mt-6 {
+    margin-top: 2em;
+}
+.btn-success {
+    background: var(--success);
+    background-color: var(--success);
+}
+
+/* footer */
+
+
+/* #/footer */
+
+/* cookie banner */
+#cookie__wrapper {
+    position: relative;
+    z-index: 9;
+    margin: auto;
+}
+
+#cookie__wrapper .cookie-consent {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    padding: 2px;
+    animation: pulse 1s ease-in-out;
+    animation-delay: 0.2s;
+}
+
+@media screen and (max-width: 575px) {
+    #cookie__wrapper .cookie-consent {
+        width: 95%;
+        margin: 0 auto;
+    }
+}
+
+
+@keyframes pulse {
+    0% {
+        transform: scale(1) translate(-50%, -50%);
+    }
+    50% {
+        transform: scale(1.05) translate(-47%, -47%);
+    }
+    100% {
+        transform: scale(1) translate(-50%, -50%);
+    }
+}
+
+/* #/cookie banner */

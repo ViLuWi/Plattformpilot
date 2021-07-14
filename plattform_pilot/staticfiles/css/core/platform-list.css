@@ -1,0 +1,483 @@
+/* card design */
+.pb-6 {
+    padding-bottom: 2em;
+}
+
+.submit__wrapper {
+    padding-bottom: 0px;
+}
+
+details[data-popover] > summary:focus {
+    outline: none;
+}
+
+details[data-popover] > summary::-webkit-details-marker {
+    display: none;
+}
+
+details[data-popover] > summary {
+    list-style: none;
+}
+
+.title-description {
+    position: absolute;
+    left: 370px;
+    top: 0px;
+    max-width: 990px;
+    background: var(--light);
+    z-index: 8;
+    border: 5px solid var(--dark);
+}
+
+.title-description:before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-right: 10px dashed var(--dark);
+    border-top: 10px dashed var(--dark);
+    border-bottom: 10px solid transparent;
+    left: -21px;
+    top: 6px;
+}
+
+.title-description:after {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 7px solid transparent;
+    border-right: 7px solid #fff;
+    border-top: 7px solid #fff;
+    border-bottom: 7px solid transparent;
+    left: -11px;
+    top: 10px;
+}
+
+@media screen and (max-width: 992px) {
+    .title-description {
+        left: 0px;
+        top: 75px;
+    }
+
+    .title-description:before {
+        content: "";
+        width: 0px;
+        height: 0px;
+        position: absolute;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid var(--dark);
+        left: calc(220px + 8%);
+        top: -23px;
+    }
+
+    .title-description:after {
+        content: "";
+        width: 0px;
+        height: 0px;
+        position: absolute;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid #fff;
+        left: calc(220px + 8%);
+        top: -18px;
+    }
+}
+
+/* badge pill design */
+.card__accuracy {
+    width: 85px;
+    height: 85px;
+    font-size: 22px;
+    padding-top: 15px;
+    position: absolute;
+    top: -40px;
+    left: 17px;
+    background: #fbfcfd;
+    border-radius: 50%;
+    z-index: 1;
+    transition: .5s;
+}
+
+.card__accuracy .text {
+    font-size: 12px;
+}
+
+.card__accuracy .text-recommended {
+    font-size: 14px;
+    position: relative;
+    top: -5px;
+}
+
+.card-wrapper.is_featured-border, .card-wrapper.is_featured-border .card__accuracy {
+    border: 1px solid red;
+}
+
+.card-wrapper:hover .card__accuracy {
+    position: absolute;
+    top: -65px;
+    transition: .75s;
+}
+
+.card-wrapper:hover .card__accuracy .text-recommended:after {
+    content: "Empfehlung";
+    font-size: 11px;
+    position: relative;
+    left: -5px;
+    top: 5px;
+}
+
+.card-wrapper.card-wrapper-fix {
+    background: #fbfcfd;
+    box-shadow: none;
+    padding: 10px;
+}
+
+.card-wrapper {
+    border-radius: 2px;
+    padding: 10px 7px;
+    padding-top: 15px;
+    background: #fbfcfd;
+    transition: .4s;
+    box-shadow: 2px 3px 1px rgba(0, 0, 0, .15);
+    position: relative;
+    z-index: 5;
+}
+
+.card-wrapper .brand__wrapper {
+    position: relative;
+    z-index: 2;
+}
+
+@media screen and (max-width: 575px) {
+    .card__accuracy {
+        left: calc(100vw - 110px);
+        z-index: 5;
+    }
+
+    .card-wrapper .card__accuracy .text-recommended:after {
+        content: "Empfeh-" '\A' " lung";
+        white-space: pre;
+    }
+
+    .submit__wrapper {
+        padding-bottom: 3em;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .card__accuracy {
+        left: calc(100vw - 110px);
+    }
+}
+
+/* -- list design */
+.list-group-item {
+    background: #fbfcfd;
+    border: none;
+    padding: 0rem 1rem;
+}
+
+.filter__pricerange-wrapper {
+    display: flex;
+}
+
+.filter__pricerange-wrapper input {
+    width: 50%;
+    max-width: 130px;
+    border: none;
+    border-bottom: 1px solid black;
+    border-radius: 0;
+    background: transparent;
+}
+
+.filter__pricerange-wrapper input:focus {
+    border-bottom: 1px solid orange;
+    transition: .4s;
+    outline: none;
+}
+
+.star-rating span {
+    color: var(--orange);
+}
+
+/* /card design */
+
+
+/*!* Create a custom checkbox *!*/
+input[name="cookies"] {
+    position: relative !important;
+    top: -18px;
+    display: flex;
+    opacity: 1 !important;
+    width: auto !important;
+    height: auto !important;
+}
+
+/* custom checkbox */
+label {
+    display: block;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    left: 20px;
+    cursor: pointer;
+}
+
+#form label:hover {
+    font-weight: bold;
+    transition: .1s;
+}
+
+input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    list-style: none;
+    padding-left: 10px;
+}
+
+li .checkmark {
+    position: absolute;
+    left: -25px;
+    top: 2px;
+}
+
+li .checkmark:before {
+    position: absolute;
+    left: 8px;
+    top: 2px;
+    content: "";
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 4px;
+    width: 4px;
+    border-radius: 100%;
+    z-index: 1;
+    opacity: 0;
+    margin: 0;
+}
+
+li .checkmark .check {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid;
+    border-radius: 2px;
+    overflow: hidden;
+    z-index: 1;
+}
+
+li .checkmark .check:before {
+    position: absolute;
+    content: "";
+    transform: rotate(45deg);
+    display: block;
+    margin-top: -4px;
+    margin-left: 6px;
+    width: 0;
+    height: 0;
+    box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0 inset;
+    animation: checkbox-off 0.3s forwards ease-out;
+}
+
+li input[type=checkbox]:focus + .checkmark .check:after {
+    opacity: 0.2;
+}
+
+li input[type=checkbox]:checked + .checkmark .check:before {
+    box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px;
+    animation: checkbox-on 0.3s forwards ease-out;
+}
+
+li input[type=checkbox]:not(:checked) + .checkmark:before {
+    animation: rippleOff 700ms forwards ease-out;
+    margin-top: 5px;
+}
+
+li input[type=checkbox]:checked + .checkmark:before {
+    animation: rippleOn 700ms forwards ease-out;
+    margin-top: 5px;
+}
+
+li input[type=checkbox]:not(:checked) + .checkmark .check:after {
+    animation: rippleOff 700ms forwards ease-out;
+    margin-top: 5px;
+}
+
+li input[type=checkbox]:checked + .checkmark .check:after {
+    animation: rippleOn 700ms forwards ease-out;
+    margin-top: 5px;
+}
+
+li input[type=checkbox][disabled]:not(:checked) ~ .checkmark .check:before, li input[type=checkbox][disabled] + .circle {
+    opacity: 0.5;
+}
+
+li input[type=checkbox][disabled] + .checkmark .check:after {
+    background-color: rgba(0, 0, 0, 0.84);
+    transform: rotate(-45deg);
+}
+
+.coloured .checkmark .check {
+    color: #2faef8;
+}
+
+.coloured .checkmark:before {
+    background-color: #2faef8;
+}
+
+.coloured input[type=checkbox]:checked + .checkmark .check {
+    color: #2faef8;
+}
+
+@keyframes checkbox-on {
+    0% {
+        box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 15px 2px 0 11px;
+    }
+    50% {
+        box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px 2px 0 11px;
+    }
+    100% {
+        box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px;
+    }
+}
+
+@keyframes checkbox-off {
+    0% {
+        box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px, 0 0 0 0 inset;
+    }
+    25% {
+        box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px, 0 0 0 0 inset;
+    }
+    50% {
+        transform: rotate(45deg);
+        margin-top: -4px;
+        margin-left: 6px;
+        width: 0px;
+        height: 0px;
+        box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 15px 2px 0 11px, 0 0 0 0 inset;
+    }
+    51% {
+        transform: rotate(0deg);
+        margin-top: -2px;
+        margin-left: -2px;
+        width: 20px;
+        height: 20px;
+        box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0px 0px 0 10px inset;
+    }
+    100% {
+        transform: rotate(0deg);
+        margin-top: -2px;
+        margin-left: -2px;
+        width: 20px;
+        height: 20px;
+        box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0px 0px 0 0px inset;
+    }
+}
+
+@keyframes rippleOn {
+    0% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(13, 13);
+    }
+}
+
+@keyframes rippleOff {
+    0% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(13, 13);
+    }
+}
+
+/* /checkbox design */
+
+
+/* collapse filter mobile */
+
+@media screen and (max-width: 992px) {
+    .menu {
+        width: 80px;
+        cursor: pointer;
+        font-size: 20px;
+        transition: .75s;
+    }
+
+    .filter__mobile-button.close {
+        cursor: pointer;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+
+    #filter_area {
+        position: absolute;
+        left: -105%;
+        top: 10vh;
+        width: 90%;
+        max-height: 95vh;
+        margin: -50px auto;
+        z-index: 9;
+        padding-bottom: 2em !important;
+    }
+
+    #filter_area.show {
+        left: 5%;
+        transition: .75s;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .mobile-background {
+        position: absolute;
+        top: 0px;
+        left: -100%;
+        width: 100%;
+        height: 2000px;
+        z-index: 9;
+        background: rgba(0, 0, 0, 0);
+        transition: .5s;
+        overflow: hidden;
+    }
+
+    .mobile-background.show {
+        left: 0%;
+        transition: .5s;
+        background: rgba(0, 0, 0, 0.5);
+        overflow: hidden;
+    }
+}
+
+@keyframes show_filter {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+/* /collapse filter mobile */
