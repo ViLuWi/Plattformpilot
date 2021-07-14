@@ -30,4 +30,4 @@ build/
 tests/report/
 
 #settings.py
-plattform_pilot/plattform_pilot/settings.py
+./plattform_pilot/plattform_pilot/settings.py
