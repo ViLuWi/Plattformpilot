@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% load static embed_video_tags stars %}
 {% block meta_description %}
-    {{ platform.who_use_it|safe }}
+    {{ platform.short_description }}
 {% endblock %}
 {% block title %}
-    {{ platform.name }} im Test - Alles was Sie wissen müssen | XYZ
+    {{ platform.name }} im Vergleich - Alles was Sie wissen müssen
 {% endblock %}
 {% block custom-css %}
     <link rel="stylesheet" href="{% static 'aos/aos.min.css' %}"/>
