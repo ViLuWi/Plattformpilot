@@ -32,6 +32,7 @@ class Platform(models.Model):
     suitable_for = models.ManyToManyField(Suitable, verbose_name='Geeignet für')
     suitable_for_text = models.TextField(max_length=1000, default='', verbose_name='Geeignet für Text', blank=True,
                                          null=True)
+    interaction_rating = models.CharField(verbose_name='Interaktionsbewertung', blank=True, null=True, max_length=5)
     is_free = models.BooleanField(default=False, verbose_name='Kostenlose variante')
     pricing = models.DecimalField(verbose_name='Startpreis', decimal_places=2, max_digits=5)
     pricing_note = models.CharField(max_length=200, verbose_name='Startpreis für')

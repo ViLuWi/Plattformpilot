@@ -75,7 +75,18 @@ checkCookie()
 let doStuff = () => {
     if (cookie_set) {
         if (document.cookie.includes('tracking')) {
-            console.log('tracking on')
+            console.log('tracking')
+
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+
+            gtag('js', new Date());
+
+            gtag('config', 'G-DCTCYGW636');
+
         }
         if (document.cookie.includes('google')) {
             console.log('google on')

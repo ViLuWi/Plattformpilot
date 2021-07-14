@@ -46,7 +46,7 @@ a:hover {
     background-color: var(--light) !important;
 }
 
-input:focus, select:focus, textarea:focus, button {
+input[type="text"]:focus,input[type="number"]:focus, select:focus, textarea:focus, button {
     box-shadow: none !important;
     border: 1px solid var(--orange);
     -webkit-appearance: none;

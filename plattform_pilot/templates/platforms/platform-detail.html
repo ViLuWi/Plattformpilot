@@ -90,12 +90,16 @@
                                 <small>Funktionsumfang</small>
                             </div>
                         </div>
+                    {% if platform.interaction_rating %}
                         <div class="col-sm-3 col-6" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="550">
                             <div class="pie-wrapper text-center">
-                                <p class="h4 text-center fw-bold">{{ platform.suitable_for.count }}</p>
-                                <small>Zielgruppen</small>
+                                <p class="h4 text-center fw-bold">
+                                    {{ platform.interaction_rating|first }}<small class="fw-small">{{ platform.interaction_rating|slice:"1:" }}</small>
+                                </p>
+                                <small>Interaktionsmöglichkeiten</small>
                             </div>
                         </div>
+                    {% endif %}
                     </div>
                 </div>
             </div>
